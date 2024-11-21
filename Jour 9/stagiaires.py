@@ -71,3 +71,4 @@ for stagiaire in stagiaires:
         moyenne += stagiaire.get_age()
         compteur += 1
 print(moyenne/compteur)
+
