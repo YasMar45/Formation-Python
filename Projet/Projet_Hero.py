@@ -1,6 +1,6 @@
 import time
 import sys
-import pygames
+import pygame
 
 #Fonction pour les textes qui defilent lentemenet
 def slow_print(text, delay=0.05):
@@ -11,7 +11,6 @@ def slow_print(text, delay=0.05):
 
 #Variable des points de vie
 player_health = 100
-player_name = ""
 
 #fonction pour voir les points de vie du joueur
 def check_health():
@@ -45,10 +44,11 @@ def start_game():
     slow_print('Vos choix vous meneront vers la victoire mais aussi très souvent vers la défaite, Bonne chance...')
     slow_print('Mais avant tout quel est ton nom qui va "peut-être rentrer dans la légende...')
     player_name = input('Entrez votre nom:')
-    slow_print(f'Très bien {player_name}, votre aventure commence dès maintenant')
+    slow_print(f'Très bien {player_name}, votre aventure commence dès maintenant,bonne chance...')
     dungeon_start()
 
 def dungeon_start():
+    pass
 
 #Lancement du jeu
 game_menu()
