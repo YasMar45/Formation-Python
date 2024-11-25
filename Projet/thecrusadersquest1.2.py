@@ -1,4 +1,4 @@
-1# Python Text RPG
+# Python Text RPG
 # Authored by: Gaga Gievous
 # Copyright February 2021
 
