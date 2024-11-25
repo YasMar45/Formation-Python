@@ -1,4 +1,6 @@
 import csv
+from pty import slave_open
+
 
 class WHR:
     def __init__(self, _countryname, _region, _year, _lifeladder, _socialsupport, _generosity, _healthylifexpectancy, _freedom, _corruption, _confidence):
@@ -28,8 +30,8 @@ with open('World Happiness Report(1).csv', mode='r', newline='') as csvfile:
 
 print(whrs[0].generosity)
 
-
-moyenne = 0  #Ici on va calculer la moyenne de la générosité
+#Ici on va calculer la moyenne de la générosité
+moyenne = 0
 
 for whr in whrs:
     if(whr.generosity != ''):   #On exclue les cases vides
@@ -41,11 +43,36 @@ somme = 0
 compteur = 0
 
 for whr in whrs:
-    if(whr.healthyLifeExpectancy != ''):
+    if(whr.healthyLifeExpectancy != '' and whr.countryname == "Australia"):
         compteur += 1
         somme += float(whr.healthyLifeExpectancy)
 
 print(somme/compteur)
 
+#Ici on va chercher la valeur la + haute de Social Support
+
+max = float(whrs[0].socialsupport)
+country = whrs[0].countryname
+
 for whr in whrs:
-    print(f"La plus grande valeur est {int(max(whrs[5]))} ")
+    if (whr.socialsupport != '' and float(whr.socialsupport) > max):
+        country = whr.countryname
+        max = float(whr.socialsupport)
+
+print(country)
+
+#Dans quel pays, on se sent le moins libre
+
+min = float(whrs[0].freedom)
+country = whrs[0].countryname
+
+for whr in whrs:
+    if (whr.freedom != '' and float(whr.freedom) < min):
+        country = whr.countryname
+        max = float(whr.freedom)
+
+print(country)
+
+
+
+
