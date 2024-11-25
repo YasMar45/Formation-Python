@@ -28,6 +28,7 @@ def game_menu():
     elif option == '2':
         help_menu()
     elif option == '3':
+        print('Fermeture du Jeu!')
         sys.exit()
     while option not in ['1', '2', '3']:
         print('1.Commencez votre aventure !\n2.Explication du Jeu\n3.Quittez le jeu')
@@ -36,12 +37,16 @@ def game_menu():
         elif option == '2':
             help_menu()
         elif option == '3':
+            print('Fermeture du Jeu!')
             sys.exit()
 
 #Help_menu Explication
 def help_menu():
-    slow_print('Le but du jeu est de vous en sortir de vivant de votre péripétie selon vox choix')
-    slow_print(f"Certains choix vous seront bénéfiques tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directemen! ")
+    slow_print('Le but du jeu est de vous en sortir de vivant de votre péripétie selon vox choix !')
+    slow_print(f'Vous commencez la partie avec comme base {player_health} PV,si cela tombe à 0, vous avez perdu...')
+    slow_print(f"Mais Attention ! Certains de vos choix vous seront bénéfiques tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directement! ")
+    game_menu()
+
 #Introduction + Nom
 def start_game():
     slow_print('Bievenu(e) dans le monde de PythoLand Quest!')
