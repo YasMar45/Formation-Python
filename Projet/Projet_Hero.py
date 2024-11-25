@@ -3,7 +3,7 @@ import sys
 import pygame
 
 #Fonction pour les textes qui defilent lentemenet
-def slow_print(text, delay=0.05):
+def slow_print(text, delay=0.035):
     for char in text:
         print(char, end="", flush=True)
         time.sleep(delay)
@@ -20,21 +20,28 @@ def check_health():
 
 #Menu du jeu
 def game_menu():
-    print('1.Commencez votre aventure !\n2.Quittez le jeu')
+    print('1.Commencez votre aventure !\n2.Explication du Jeu\n3.Quittez le jeu')
     option = input('Entrer votre choix:')
 
     if option == '1':
         start_game()
-    if option == '2':
+    elif option == '2':
+        help_menu()
+    elif option == '3':
         sys.exit()
-    while option not in ['1', '2']:
-        option = input('Entrer votre choix:')
+    while option not in ['1', '2', '3']:
+        print('1.Commencez votre aventure !\n2.Explication du Jeu\n3.Quittez le jeu')
         if option == '1':
             start_game()
-        if option == '2':
+        elif option == '2':
+            help_menu()
+        elif option == '3':
             sys.exit()
 
-
+#Help_menu Explication
+def help_menu():
+    slow_print('Le but du jeu est de vous en sortir de vivant de votre péripétie selon vox choix')
+    slow_print(f"Certains choix vous seront bénéfiques tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directemen! ")
 #Introduction + Nom
 def start_game():
     slow_print('Bievenu(e) dans le monde de PythoLand Quest!')
