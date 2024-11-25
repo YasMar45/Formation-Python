@@ -3,7 +3,7 @@ import sys
 import pygame
 
 #Fonction pour les textes qui defilent lentemenet
-def slow_print(text, delay=0.035):
+def slow_print(text, delay=0):
     for char in text:
         print(char, end="", flush=True)
         time.sleep(delay)
@@ -11,6 +11,9 @@ def slow_print(text, delay=0.035):
 
 #Variable des points de vie
 player_health = 100
+player_name = ''
+weapon_choice = ''
+weapon = ''
 
 #fonction pour voir les points de vie du joueur
 def check_health():
@@ -60,7 +63,23 @@ def start_game():
     dungeon_start()
 
 def dungeon_start():
-    pass
+    global player_health
+    slow_print(f'{player_name}, vous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...')
+    slow_print(f'Vous avez un mal de crâne comme si on vous avez frappé auparavant très fort dessus')
+    slow_print(f'Vous vous levez et appercevez le couloir qui découle de votre cellule...')
+    slow_print(f'Vous voyez plein de cadavres au sol, il y a eu un combat très violent ici il y a peu de temps...')
+    slow_print(f"Au sol. 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?")
+    print(f"1.Epee et Bouclier\n2.Double Dague\n3.Massue")
+    weapon_choice = input(f"Veuillez choisir le chiffre pour votre arme de prédilection:")
+    if weapon_choice == "1":
+        weapon = 'Epee et Bouclier'
+        slow_print(f'Vous avez ramassé {weapon}')
+    elif weapon_choice == "2":
+        weapon = 'Double Dague'
+        slow_print(f'Vous avez ramassé {weapon}')
+    elif weapon_choice == "3":
+        weapon = 'Massue'
+        slow_print(f'Vous avez ramassé {weapon}')
 
 #Lancement du jeu
 game_menu()
