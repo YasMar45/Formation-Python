@@ -298,7 +298,7 @@ def thief_coming():
     input(f"Appuyer sur Enter pour continer")
     choice = input("1.Se cacher et rester silencieux\n2.Les attaquer!\nEntrer votre choix ici:")
     if choice == "1":
-        pass
+        thief_base()
     elif choice == "2":
         player_health -= 100
         slow_print("Vous décidez d'attaquer la troupe de bandit directement...")
@@ -308,6 +308,9 @@ def thief_coming():
     else:
         slow_print(f"Entrée incorrecte ou invalide. Veuillez Réessayer!")
         thief_coming()
+
+def thief_base():
+    pass
 
 #Lancement du jeu
 game_menu()
