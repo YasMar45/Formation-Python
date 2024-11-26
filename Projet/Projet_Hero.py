@@ -131,11 +131,29 @@ def out_dungeon():
 
 #Chemin de Gauche !
 def left_path():
-    slow_print(f"x")
+    slow_print(f"Après quelques heures de marche dans ce sentier avec de quoi vous nourrir et boire de l'eau grâce à une joli rivière qui se trouve pas trop loin!")
+    slow_print(f"Soudainement, vous entendez et sentez des mouvements rapides près de vous!")
+    enter = input(f"Appuyer sur Enter pour continer")
     strange_sound()
 
 #Bruit étrange choix ignorer ou aller vers le bruit
 def strange_sound():
+    global player_health
+    slow_print(f"Maintenant vous entendez des bruits venant d'un buisson près de vous, allez-vous ignorer cela ou aller voir par curiosité ce qu'il se trame?\n1.Check le buisson!\n2.Ignorer")
+    choice = input(f"Entrez votre choix ici:")
+    if choice == "1":
+        player_health -= 1
+        slow_print(f"Un écureuil vous saute au visage et vous griffe la joue, vous perdez 1 PV, il vous reste {player_health} PV!")
+        enter = input(f"Appuyer sur Enter pour continer")
+        in_vilage()
+    elif choice == "2":
+        slow_print(f"Vous décidez d'ignorer ce qu'il se passe dans le buisson, vous continuez votre chemin!")
+        enter = input(f"Appuyer sur Enter pour continer")
+        in_vilage()
+
+#Entrer au village!
+def in_vilage():
+    slow_print(f"Arrivé au village!")
     pass
 
 #Chemin de Droite !
