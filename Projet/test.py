@@ -1,10 +1,14 @@
 import time
 
+var1 = 2
+
 def slow_print(text, delay=0.08):
+    global var1
     for char in text:
         print(char, end="",flush=True)
         time.sleep(delay)
     print()
+    var1 = 3
 
 
 slow_print('Bievenu(e) dans le monde de PythoLand Quest!')
