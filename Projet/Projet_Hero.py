@@ -83,6 +83,9 @@ def dungeon_start():
         player_weapon = 'La Massue'
         slow_print(f'Vous avez ramassé {player_weapon}')
         first_encounter()
+    else:
+        slow_print(f"Entrée incorrecte ou invalide. Veuillez Réessayer!")
+        dungeon_start()
 
 #Première rencontre et choix !
 def first_encounter():
