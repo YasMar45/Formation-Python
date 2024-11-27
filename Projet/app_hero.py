@@ -35,5 +35,5 @@ root.resizable(True, True)  # non-resizable width, height
 main_window = Frame_Accueil(root)
 main_window.pack(fill='both',expand=True)
 
-#Main loop (blocage ici tant qu'on n'a pas quitté)
+#Main loop (blocage ici tant qu'on n'a pas quittée)
 root.mainloop()
