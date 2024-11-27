@@ -1,16 +1,17 @@
 import time
 import sys
 import tkinter as tk
-"""
-# - - - Fenetre de jeu - - -
+
+
+#Fenetre de jeu - - -
 root = tk.Tk()
 root.title("PYTHONLAND QUEST - Projet de Formation - Margoum Yassine - 2024")
 root.geometry("1920x1080")
 root.resizable(False, False)  # non-resizable width, height
 
-# - - - Main loop (blocage ici tant qu'on n'a pas quitté)
+#Main loop (blocage ici tant qu'on n'a pas quitté)
 root.mainloop()
-"""
+
 
 #Fonction pour les textes qui defilent lentemenet
 def slow_print(text, delay=0):
