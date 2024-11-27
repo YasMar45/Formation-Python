@@ -11,9 +11,19 @@ class Frame_Accueil(tk.Frame):
         tk.Button(self, text="Explication/But du jeu", fg="black", bg="seashell3", font=("arial", 50)).pack(pady=20)
         tk.Button(self, text="Quitter le jeu", fg="black", bg="seashell3", font=("arial", 50),command=parent.destroy).pack(pady=20)
 
+#Menu Explication
 class But_Jeu(tk.Frame):
     def __init__(self,parent):
         super().__init__(parent)
+
+        self.label = tk.Label(self, text= "x", bg="white", font=("arial", 100))
+        self.label.place(x=20,y=20)
+
+#Commencement du Jeu
+class Start_Game(tk.Frame):
+    def __init__(self,parent):
+        super().__init__(parent)
+        pass
 
 #Fenetre de jeu
 root = tk.Tk()

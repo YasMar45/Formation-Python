@@ -1,7 +1,5 @@
 import tkinter as tk
 from time import time
-import math
-
 
 class AnimatedDemoFrame(tk.Frame):
     def __init__(self, parent, bg="white", button_menu_callback=None):
