@@ -114,7 +114,7 @@ if __name__ == "__main__":
 
     # - - - Frame de démonstration - - -
     #frame = tk.Frame(root,bg='blue')
-    frame = AnimatedDemoFrame(root, bg='white', button_menu_callback=root.destroy)
+    frame = AnimatedDemoFrame(root, bg='white',button_menu_callback=root.destroy)
     frame.pack(fill='both', expand=True)
 
     # - - - Main loop (blocage ici tant qu'on n'a pas quitté)
