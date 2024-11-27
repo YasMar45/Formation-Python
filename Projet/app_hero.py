@@ -16,7 +16,7 @@ class But_Jeu(tk.Frame):
     def __init__(self,parent):
         super().__init__(parent)
 
-        self.label = tk.Label(self, text= "x", bg="white", font=("arial", 100))
+        self.label = tk.Label(self, text= "Explication", bg="white", font=("arial", 100))
         self.label.place(x=20,y=20)
 
 #Commencement du Jeu
