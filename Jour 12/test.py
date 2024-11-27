@@ -1,69 +1,63 @@
 import tkinter as tk
 
-# Import de module dans le même dossier
-import animated_demo
+
+# Frame détaillé du menu principal
+class Frame_Accueil(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.parent = parent
+        tk.Label(self, text="PYTHONLAND QUEST", fg="red4", bg="gray65", font=("arial", 100)).pack(pady=100)
+        tk.Button(self, text="Commencer", fg="black", bg="seashell3", font=("arial", 70)).pack(pady=20)
+        tk.Button(self, text="Explication/But du jeu", fg="black", bg="seashell3", font=("arial", 50),
+                  command=self.show_explication).pack(pady=20)
+        tk.Button(self, text="Quitter le jeu", fg="black", bg="seashell3", font=("arial", 50),
+                  command=parent.destroy).pack(pady=20)
+
+    def show_explication(self):
+        self.pack_forget()
+        explication_frame = But_Jeu(self.parent)
+        explication_frame.pack(fill='both', expand=True)
 
 
-class App(tk.Tk):
-    def __init__(self):
-        """
-            Application simple qui propose un menu et la démonstration animée, chacun dans son propre Frame.
-        """
-        super().__init__()
-        self.title("Tk: Menu and Frames")
-        self.geometry("500x400")
-        self.resizable(False, False)  # non-resizable width, height
+# Menu Explication
+class But_Jeu(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.label = tk.Label(self, text="Explication", bg="white", font=("arial", 100))
+        self.label.place(x=20, y=20)
+        tk.Button(self, text="Retour", fg="black", bg="seashell3", font=("arial", 50), command=self.show_main).pack(
+            pady=20)
 
-        # Ajout des 2 frames ; au départ, seul le menu sera visible, mais ça pourra changer par la suite
-
-        self.main_menu = MainMenuFrame(self)
-        # C'est le parent qui décide que le frame (enfant) peut s'étendre et prendre toute la place
-        self._set_frame_enabled(self.main_menu, True)
-
-        self.animated_demo = animated_demo.AnimatedDemoFrame(
-            self, bg="red", button_menu_callback=self.on_back_to_menu_click
-        )
-        self._set_frame_enabled(self.animated_demo, False)
-
-    def _set_frame_enabled(self, frame: tk.Frame, is_enabled: bool):
-        if is_enabled:
-            frame.pack(fill='both', expand=True)
-        else:
-            frame.pack_forget()
-        self.update()  # Force display updates
-
-    def on_animated_demo_click(self):
-        # On cache le menu et on affiche le frame de démonstration (défini dans animated_demo.py)
-        self._set_frame_enabled(self.main_menu, False)
-        self._set_frame_enabled(self.animated_demo, True)
-
-    def on_back_to_menu_click(self):
-        self._set_frame_enabled(self.animated_demo, False)
-        self._set_frame_enabled(self.main_menu, True)
+    def show_main(self):
+        self.pack_forget()
+        main_window = Frame_Accueil(self.master)
+        main_window.pack(fill='both', expand=True)
 
 
-class MainMenuFrame(tk.Frame):
-    def __init__(self, parent: App, bg="blue"):
-        tk.Frame.__init__(self, parent, bg=bg)
-        self.parent = parent  # On garde une référence vers le parent, pour pouvoir lui transmettre des callbacks
-
-        # Pour chaque widget, on procède en 2 étapes :
-        #    a) on instancie le widget lui-même
-        #    b) on le place dans son parent (la main window)
-        self.label = tk.Label(self, text="This is the main menu", bg="lightgray")
-        self.label.place(x=20.0, y=20.0)  # voir aussi: pack(...), grid(...)
-
-        # - - - Build interactive widgets (with callbacks) - - -
-        self.button = tk.Button(self, text="Animated Demo (in its own frame)", command=self.on_animated_demo_click)
-        self.button.place(x=20.0, y=50.0)  # voir aussi: pack(...), grid(...)
-
-    def on_animated_demo_click(self):
-        print("on_animated_demo_click(): on transmet la demande de changement du menu vers le parent...")
-        self.parent.on_animated_demo_click()
+# Commencement du Jeu
+class Start_Game(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        pass
 
 
-if __name__ == "__main__":
+# Fenetre de jeu
+root = tk.Tk()
+root.title("PYTHONLAND QUEST - Projet de Formation - Margoum Yassine - 2024")
+root.geometry("1920x1080")
+root.resizable(True, True)  # non-resizable width, height
 
-    app = App()
-    app.mainloop()  # Attention, fonction bloquante
-    a = 0  # par exemple, cette ligne ne sera jamais exécutée
+# Menu principal
+main_window = Frame_Accueil(root)
+main_window.pack(fill='both', expand=True)
+
+# Main loop (blocage ici tant qu'on n'a pas quittée)
+root.mainloop()
+
+"""
+Le but du jeu est de vous en sortir de vivant de votre péripétie dans PythonLand Quest selon vox choix !
+Quand un choix vous sera demandé, vous devez entrer le numéro correspondant pour continuer et aussi appuyé sur Enter pour continuer l'intrigue
+Vous commencez la partie avec comme base de {player_health} PV,si cela tombe à 0, vous avez perdu...
+Mais Attention ! Certains de vos choix vous seront bénéfiques comme un gain de points de vie tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directement! 
+
+"""
