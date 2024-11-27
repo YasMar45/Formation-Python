@@ -1,24 +1,16 @@
 import time
 import sys
 import tkinter as tk
-from tkinter import messagebox
-
-#Fenetre de jeu
+"""
+# - - - Fenetre de jeu - - -
 root = tk.Tk()
 root.title("PYTHONLAND QUEST - Projet de Formation - Margoum Yassine - 2024")
 root.geometry("1920x1080")
-root.resizable(True, True)
+root.resizable(False, False)  # non-resizable width, height
 
-#Menu Principal
-tk.Label(root, text ="PYTHONLAND QUEST", bg="lightgray", fg="red", font=("aria", 100)).pack(pady=200)
-tk.Label(root, text ="Commencer", bg="lightgray", fg="black", font=("aria", 40)).pack(pady=0)
-tk.Label(root, text ="Comment jouer", bg="lightgray", fg="black", font=("aria", 40)).pack(pady=30)
-tk.Label(root, text ="Quitter le jeu", bg="lightgray", fg="black", font=("aria", 40)).pack(pady=40)
-
-#Main loop (blocage ici tant qu'on n'a pas quitté)
+# - - - Main loop (blocage ici tant qu'on n'a pas quitté)
 root.mainloop()
-
-
+"""
 
 #Fonction pour les textes qui defilent lentemenet
 def slow_print(text, delay=0):
