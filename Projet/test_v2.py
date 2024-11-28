@@ -129,6 +129,8 @@ class Start_Game(tk.Frame):
                                          command=self.name_choice)
         self.continue_button.place(x=1700, y=685)
 
+        self.update()
+
     # Entrer son nom
     def name_choice(self):
         self.clear_frame_contents()
@@ -159,6 +161,8 @@ class Start_Game(tk.Frame):
         self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20),
                                          command=self.on_continue)
         self.continue_button.place(x=1700, y=685)
+
+        self.update()
 
     def on_continue(self):
         global player_name
