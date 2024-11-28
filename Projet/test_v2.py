@@ -1,16 +1,16 @@
-import time
 import sys
 import tkinter
 import tkinter as tk
 
-#Variable des points de vie
+# Variable des points de vie
 player_health = 50
 max_player_health = 100
 player_name = ''
 weapon_choice = ''
 player_weapon = ''
 
-#Mécanique de Points de vie
+
+# Mécanique de Points de vie
 def health_meca():
     global player_health
     global max_player_health
@@ -18,14 +18,16 @@ def health_meca():
         player_health = max_player_health
         print("Vous êtes au maximum de PV possible!")
 
-#Si PV arrive à 0, Défaite
+
+# Si PV arrive à 0, Défaite
 def check_health():
     global player_health
     if player_health <= 0:
-        slow_print ("Mais...")
+        slow_print("Mais...")
         slow_print("Vous succombez de vos blessures,Défaite...")
         slow_print("Retour au menu principal")
         game_menu()
+
 
 # Frame détaillé du menu principal
 class Frame_Accueil(tk.Frame):
@@ -42,8 +44,9 @@ class Frame_Accueil(tk.Frame):
         background.place(x=0, y=0, relwidth=1, relheight=1)
         bg = background
 
-        #Button du Menu Princiaple
-        tk.Label(self, text="PYTHONLAND QUEST", fg="red4", bg="white",font=("arial", 100), relief=tkinter.RIDGE).pack(pady=100)
+        # Button du Menu Princiaple
+        tk.Label(self, text="PYTHONLAND QUEST", fg="red4", bg="white", font=("arial", 100), relief=tkinter.RIDGE).pack(
+            pady=100)
         tk.Button(self, text="Commencer votre aventure", fg="black", bg="seashell3", font=("arial", 70),
                   command=self.starting_game).pack(pady=20)
         tk.Button(self, text="Explication/But du jeu", fg="black", bg="seashell3", font=("arial", 50),
@@ -61,6 +64,7 @@ class Frame_Accueil(tk.Frame):
         game_frame = Start_Game(self.parent)
         game_frame.pack(fill='both', expand=True)
 
+
 # Menu Explication
 class But_Jeu(tk.Frame):
     def __init__(self, parent):
@@ -75,23 +79,28 @@ class But_Jeu(tk.Frame):
         background.place(x=0, y=0, relwidth=1, relheight=1)
         bg = background
 
-        #Zone de texte pour le But du Jeu
-        self.label = tk.Label(self, text=f"Le but du jeu est de vous en sortir de vivant de votre péripétie dans PythonLand Quest selon vox choix !\nQuand un choix vous sera demandé, vous devez entrer le numéro correspondant pour continuer et aussi appuyé sur Enter pour continuer l'intrigue\Vous commencez la partie avec comme base de {player_health} PV,\nsi cela tombe à 0, vous avez perdu...\nMais Attention ! Certains de vos choix vous seront bénéfiques comme un gain de points de vie tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directement! "
+        # Zone de texte pour le But du Jeu
+        self.label = tk.Label(self,
+                              text=f"Le but du jeu est de vous en sortir de vivant de votre péripétie dans PythonLand Quest selon vox choix !\nQuand un choix vous sera demandé, vous devez entrer le numéro correspondant pour continuer et aussi appuyé sur Enter pour continuer l'intrigue\Vous commencez la partie avec comme base de {player_health} PV,\nsi cela tombe à 0, vous avez perdu...\nMais Attention ! Certains de vos choix vous seront bénéfiques comme un gain de points de vie tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directement! "
                               , bg="white", font=("arial", 15))
 
-        #Bouton Retour
+        # Bouton Retour
         self.label.place(x=50, y=400)
-        tk.Button(self, text="Retour", fg="black", bg="seashell3", font=("arial", 50), command=self.show_main).place(x=840, y=900)
+        tk.Button(self, text="Retour", fg="black", bg="seashell3", font=("arial", 50), command=self.show_main).place(
+            x=840, y=900)
 
     def show_main(self):
         self.pack_forget()
         main_window = Frame_Accueil(self.master)
         main_window.pack(fill='both', expand=True)
 
+
 # Commencement du Jeu
 class Start_Game(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
+        self.background = None
+        self.description = None
         self.init_ui()
 
     def init_ui(self):
@@ -110,7 +119,8 @@ class Start_Game(tk.Frame):
         self.message.place(x=50, y=750)
 
         # Endroit où le texte apparait
-        self.description = tk.Label(self, text="Bievenu(e) dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies",
+        self.description = tk.Label(self,
+                                    text="Bievenu(e) dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies",
                                     fg="black", bg="white", font=("arial", 25))
         self.description.place(x=100, y=800)
 
@@ -119,7 +129,7 @@ class Start_Game(tk.Frame):
                                          command=self.name_choice)
         self.continue_button.place(x=1700, y=685)
 
-    #Entrer son nom
+    # Entrer son nom
     def name_choice(self):
         self.clear_frame_contents()
         # Fond d'écran
@@ -159,7 +169,7 @@ class Start_Game(tk.Frame):
         for widget in self.winfo_children():
             widget.place_forget()
 
-    #Choix Arme
+    # Choix Arme
     def weapon_choice(self):
         self.clear_frame_contents()
         # Fond d'écran
@@ -178,13 +188,14 @@ class Start_Game(tk.Frame):
 
         # Endroit où le texte apparait
         tk.Label(self,
-                 text=f"Très bien {player_name}, votre aventure commence dès maintenant,bonne chance....\nVVous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...'\nVous vous levez et apercevez le couloir qui découle de votre cellule...'\nAu sol, 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?"
+                 text=f"Très bien {player_name}, votre aventure commence dès maintenant,bonne chance....\nVous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...'\nVous vous levez et apercevez le couloir qui découle de votre cellule...'\nAu sol, 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?"
                  , fg="black", bg="white", font=("arial", 25)).place(x=270, y=800)
 
         # Bouton pour continuer
         self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20),
                                          command=self.on_continue)
         self.continue_button.place(x=1700, y=685)
+
 
 # Fenetre de jeu
 root = tk.Tk()
@@ -199,7 +210,8 @@ main_window.pack(fill='both', expand=True)
 # Main loop (blocage ici tant qu'on n'a pas quittée)
 root.mainloop()
 
-#Fonction pour les textes qui defilent lentemenet
+
+# Fonction pour les textes qui defilent lentemenet
 def slow_print(text, delay=0.1):
     for char in text:
         print(char, end="", flush=True)
