@@ -85,22 +85,27 @@ class Start_Game(tk.Frame):
                  , fg="black", bg="white", font=("arial", 25)).place(x=100,y=800)
 
         # Bouton pour continuer
-        self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20))
+        self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20),command=self.name_choice)
         self.continue_button.place(x=1700, y=685)
 
+    def name_choice(self):
+        self.pack_forget()
+        name_choice_frame = Name_Choice(self.master)
+        name_choice_frame.pack(fill='both', expand=True)
 
 # Entrée pour le nom du joueur
-class Name_choice(tk.Frame):
+class Name_Choice(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
 
         # Fond d'écran
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/demandenom.png")
+            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/beginnerlogo.png")
         background.config(image=img)
-        background.image = img
+        background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
+        bg = background
 
         # Message Box en blanc tout simplement
         tk.Label(self,
