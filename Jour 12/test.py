@@ -88,6 +88,7 @@ class Start_Game(tk.Frame):
         self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20))
         self.continue_button.place(x=1700, y=685)
 
+
 # Entrée pour le nom du joueur
 class Name_choice(tk.Frame):
     def __init__(self, parent):
@@ -96,11 +97,15 @@ class Name_choice(tk.Frame):
         # Fond d'écran
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/donjonstart.png")
+            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/demandenom.png")
         background.config(image=img)
-        background.image = img  # Nécessaire pour conserver la référence de l'image
+        background.image = img
         background.place(x=0, y=-75, relwidth=1, relheight=1)
-        bg = background
+
+        # Message Box en blanc tout simplement
+        tk.Label(self,
+                 text="Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te",
+                 fg="white", bg="white", font=("arial", 30), relief=tkinter.RIDGE).place(x=50, y=750)
 
         #Entrez le nom du joueur
         self.name_label = tk.Label(self, text="Entrez votre nom:", fg="black", bg="white", font=("arial", 20))

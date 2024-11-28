@@ -102,6 +102,11 @@ class Name_choice(tk.Frame):
         background.place(x=0, y=-75, relwidth=1, relheight=1)
         bg = background
 
+        # Message Box en blanc tout simplement
+        tk.Label(self,
+                 text="Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te",
+                 fg="white", bg="white", font=("arial", 30), relief=tkinter.RIDGE).place(x=50, y=750)
+
         #Entrez le nom du joueur
         self.name_label = tk.Label(self, text="Entrez votre nom:", fg="black", bg="white", font=("arial", 20))
         self.name_label.place(x=800, y=400)
