@@ -23,7 +23,7 @@ line_to_write = "bonjour monde\n"
 with open("demo.txt", "w") as fp:
     fp.write(line_to_write)
 
-#Ouverture en écriture qui ne supprime pas le contenu pré existant ma va "appender"/ajouter
+#Ouverture en écriture qui ne supprime pas le contenu pré existant mais va l'"appender"/ajouter
 with open("demo.txt", "a") as fp:
     fp.write("au revoir les gens\n")
 

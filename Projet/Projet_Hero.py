@@ -1,5 +1,6 @@
 import time
 import sys
+from tkinter import *
 
 #Fonction pour les textes qui defilent lentemenet
 def slow_print(text, delay=0):
