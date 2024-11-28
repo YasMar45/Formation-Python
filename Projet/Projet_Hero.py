@@ -3,7 +3,7 @@ import sys
 from tkinter import *
 
 #Fonction pour les textes qui defilent lentemenet
-def slow_print(text, delay=0):
+def slow_print(text, delay=0.1):
     for char in text:
         print(char, end="", flush=True)
         time.sleep(delay)
@@ -77,7 +77,7 @@ def dungeon_start():
     global player_weapon
     global player_health
     player_health = 50
-    slow_print(f'{player_name}, vous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...')
+    slow_print(f'{player_name}, Vous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire....')
     slow_print(f'Vous avez un mal de crâne comme si on vous avez frappé auparavant très fort dessus')
     slow_print(f'Vous commencez avec {player_health} PV!')
     input(f"Appuyez sur Enter pour continuer")
