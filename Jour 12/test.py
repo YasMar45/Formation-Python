@@ -1,10 +1,5 @@
 import tkinter
 import tkinter as tk
-from time import sleep
-import sys
-
-import reportlab.platypus.paragraph
-
 
 # Frame détaillé du menu principal
 class Frame_Accueil(tk.Frame):
@@ -79,18 +74,46 @@ class Start_Game(tk.Frame):
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
-        bg = background
 
-
-        #Rectanle où le texte sera inséré
-        """messagebox = tk.Label(self)"""
+        # Message Box en blanc tout simplement
+        tk.Label(self,
+                 text="Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te\nTest Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Te",
+                 fg="white", bg="white", font=("arial", 30), relief=tkinter.RIDGE).place(x=50, y=750)
 
         # Endroit où le texte apparait
-        tk.Label(self, text="Bievenu(e) dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!", fg="red4", bg="white", font=("arial", 30)).place(x=100,y=750)
+        tk.Label(self, text="Bievenu(e) dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies"
+                 , fg="black", bg="white", font=("arial", 25)).place(x=100,y=800)
 
-        # Bouton pour faire continuer le texte
-        tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 30)).place(
-            x=1700, y=685)
+        # Bouton pour continuer
+        self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20))
+        self.continue_button.place(x=1700, y=685)
+
+# Entrée pour le nom du joueur
+class Name_choice(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+
+        # Fond d'écran
+        background = tk.Label(self)
+        img = tk.PhotoImage(
+            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/donjonstart.png")
+        background.config(image=img)
+        background.image = img  # Nécessaire pour conserver la référence de l'image
+        background.place(x=0, y=-75, relwidth=1, relheight=1)
+        bg = background
+
+        #Entrez le nom du joueur
+        self.name_label = tk.Label(self, text="Entrez votre nom:", fg="black", bg="white", font=("arial", 20))
+        self.name_label.place(x=800, y=400)
+        self.name_entry = tk.Entry(self, font=("arial", 20))
+        self.name_entry.place(x=850, y=400)
+
+
+# Choix d'Armes
+class Weapon_Choice(tk.Frame):
+    def __init__(self, parent):
+        super().__init__(parent)
+        pass
 
 
 # Fenetre de jeu
