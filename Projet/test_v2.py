@@ -178,7 +178,7 @@ class Start_Game(tk.Frame):
 
         # Endroit où le texte apparait
         tk.Label(self,
-                 text=f"Très bien {player_name}, votre aventure commence dès maintenant,bonne chance...\nVVous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...'\nVous vous levez et apercevez le couloir qui découle de votre cellule...'\nAu sol, 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?"
+                 text=f"Très bien {player_name}, votre aventure commence dès maintenant,bonne chance....\nVVous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...'\nVous vous levez et apercevez le couloir qui découle de votre cellule...'\nAu sol, 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?"
                  , fg="black", bg="white", font=("arial", 25)).place(x=270, y=800)
 
         # Bouton pour continuer

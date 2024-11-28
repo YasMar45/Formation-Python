@@ -81,7 +81,7 @@ def dungeon_start():
     slow_print(f'Vous avez un mal de crâne comme si on vous avez frappé auparavant très fort dessus')
     slow_print(f'Vous commencez avec {player_health} PV!')
     input(f"Appuyez sur Enter pour continuer")
-    slow_print(f'Vous vous levez et apercevez le couloir qui découle de votre cellule...')
+    slow_print(f'Vous vous levez et apercevez le couloir qui découle de votre cellule....')
     slow_print(f'Vous voyez plein de cadavres au sol, il y a eu un combat très violent ici il y a peu de temps...')
     input(f"Appuyer sur Enter pour continuer")
     slow_print(f"Au sol. 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?")

@@ -186,7 +186,7 @@ class Weapon_Choice(tk.Frame):
 
         # Endroit où le texte apparait
         tk.Label(self,
-                 text=f"Très bien {player_name}, votre aventure commence dès maintenant,bonne chance...\nVos choix vous meneront vers la victoire mais aussi très souvent vers la défaite, Bonne chance...\nMais avant tout quel est ton nom qui va 'peut-être rentrer dans la légende...'"
+                 text=f"Très bien... {player_name}, votre aventure commence dès maintenant,bonne chance...\nVos choix vous meneront vers la victoire mais aussi très souvent vers la défaite, Bonne chance...\nMais avant tout quel est ton nom qui va 'peut-être rentrer dans la légende...'"
                  , fg="black", bg="white", font=("arial", 25)).place(x=270, y=800)
 
 
