@@ -28,7 +28,6 @@ def check_health():
         slow_print("Retour au menu principal")
         game_menu()
 
-
 # Frame détaillé du menu principal
 class Frame_Accueil(tk.Frame):
     def __init__(self, parent):
@@ -195,10 +194,29 @@ class Start_Game(tk.Frame):
                  text=f"Très bien {player_name}, votre aventure commence dès maintenant,bonne chance....\nVous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire...'\nVous vous levez et apercevez le couloir qui découle de votre cellule...'\nAu sol, 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?"
                  , fg="black", bg="white", font=("arial", 25)).place(x=270, y=800)
 
-        # Bouton pour continuer
-        self.continue_button = tk.Button(self, text="Continuer", fg="black", bg="seashell3", font=("arial", 20),
-                                         command=self.on_continue)
-        self.continue_button.place(x=1700, y=685)
+        #Bouton pour le choix d'armes
+        self.weapon_1 = tk.Button(self,text = "1.Epee et Bouclier", fg="black", font=("arial", 20, "bold"),
+                                  command=self.on_weapon_choice)
+        self.weapon_1.place(x=100, y=200)
+
+        self.weapon_2 = tk.Button(self, text="2.Double Dague", fg="black", font=("arial", 20, "bold"),
+                                  command=self.on_weapon_choice)
+        self.weapon_2.place(x=100, y=300)
+
+        self.weapon_3 = tk.Button(self, text="3.Massue", fg="black", font=("arial", 20, "bold"),
+                                  command=self.on_weapon_choice)
+        self.weapon_3.place(x=100, y=400)
+
+        self.update()
+
+        def on_weapon_choice(self):
+            global weapon_choice
+            weapon_choice = self.name_entry.get()
+            self.first_encounter()
+
+    def first_encounter(self):
+        self.clear_frame_contents()
+        pass
 
 
 # Fenetre de jeu
