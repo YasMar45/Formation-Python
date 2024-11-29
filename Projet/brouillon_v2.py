@@ -19,7 +19,7 @@ class Game(tk.Frame):
         self.frm_box.place(x=0, y=700)
 
         # Endroit où le texte apparait
-        self.lb_text = tk.Label(text="Test", fg="black", bg="white", font=("arial", 20))
+        self.lb_text = tk.Label(text="X", fg="black", bg="white", font=("arial", 20))
         self.lb_text.place(x=100, y=750)
 
         # Button "Continuer"
