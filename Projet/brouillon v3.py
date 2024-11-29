@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter import PhotoImage
+
+# import click
 
 # Taille de la fenêtre
 largeur_fenetre = 1920
@@ -23,10 +24,10 @@ class Game(tk.Frame):
         self.frame_image.place(relwidth=2 / 3, relheight=3 / 4)
 
         # Image au-dessus de la boîte de message
-        self.image = PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/donjonstart.png")
-        self.img_label = tk.Label(self.frame_image, image=self.image)
-        self.img_label.pack(expand=True)
+        self.current_image = tk.PhotoImage(
+            file="images/donjonstart.png")
+        self.lbl_image = tk.Label(self.frame_image, image=self.current_image)
+        self.lbl_image.pack(expand=True)
 
         # Frame Button pour les choix
         self.btn_frame = tk.Frame(self.int, bg='black')
@@ -44,18 +45,35 @@ class Game(tk.Frame):
         self.frm_box.place(rely=3 / 4, relwidth=1, relheight=1 / 4)
 
         # Texte dans la boîte de message
-        self.lb_text = tk.Label(self.frm_box,
-                                text="Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
-                                fg="black", bg="white", font=("arial", 20))
-        self.lb_text.pack(expand=True, pady=20)
+        self.lbl_text = tk.Label(self.frm_box,
+                                 text="Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
+                                 fg="black", bg="white", font=("arial", 20))
+        self.lbl_text.pack(expand=True, pady=20)
 
     def make_choice_1(self, choice):
         if choice == 'gauche':
-            self.lb_text.config(
+            self.lbl_text.config(
                 text="Vous avez choisi le chemin de gauche.\nDéfaite")
+            self.current_image = tk.PhotoImage(file="images/weaponchoice.png")
+            self.lbl_image.config(image=self.current_image)
+
         elif choice == 'droite':
-            self.lb_text.config(
-                text="Vous avez choisi le chemin de droite.\nVous sortez du donjon")
+            self.lbl_text.config(
+                text="Vous avez choisi le chemin de droite.\nVous sortez du donjon et voyez un monstre vous attaquer\n Que faites-vous ?")
+            self.btn_1.config(text="Attaquer", command=lambda: self.make_choice_right('Attaquer'))
+            self.btn_2.config(text="Fuir", command=lambda: self.make_choice_right('Fuir'))
+            self.current_image = tk.PhotoImage(file="images/elden_ring_projet_bg.png")
+            self.lbl_image.config(image=self.current_image)
+
+    def make_choice_right(self, choice):
+        if choice == 'Attaquer':
+            self.lbl_text.config(
+                text="Vous avez choisi d'affronter le monstre.\nDéfaite")
+        elif choice == 'Fuir':
+            pass
+
+    def uptade_current_image(self):
+        self.current_image = tk.PhotoImage(file="elden_ring_projet_bg.png")
 
 # Créer et exécuter l'application
 root = tk.Tk()

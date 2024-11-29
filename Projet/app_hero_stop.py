@@ -37,7 +37,7 @@ class Frame_Accueil(tk.Frame):
         # Fond D'écran dans le menu
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/elden ring projet bg.png")
+            file="/Projet/images/elden_ring_projet_bg.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=0, relwidth=1, relheight=1)
@@ -72,7 +72,7 @@ class But_Jeu(tk.Frame):
         # Fond D'écran dans le menu
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/beginnerlogo.png")
+            file="/Projet/images/beginnerlogo.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=0, relwidth=1, relheight=1)
@@ -106,7 +106,7 @@ class Start_Game(tk.Frame):
         # Fond d'écran pour l'introduction
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/donjonstart.png")
+            file="/Projet/images/donjonstart.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
@@ -136,7 +136,7 @@ class Start_Game(tk.Frame):
         # Fond d'écran
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/demandenom.png")
+            file="/Projet/images/demandenom.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
@@ -178,7 +178,7 @@ class Start_Game(tk.Frame):
         # Fond d'écran
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/weaponchoice.png")
+            file="/Projet/images/weaponchoice.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)

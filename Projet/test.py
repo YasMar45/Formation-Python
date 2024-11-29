@@ -24,7 +24,7 @@ class Game(tk.Frame):
 
         # Image au-dessus de la boîte de message
         self.image = PhotoImage(
-            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/donjonstart.png")
+            file="/Projet/images/donjonstart.png")
         self.img_label = tk.Label(self.frame_image, image=self.image)
         self.img_label.pack(expand=True)
 
