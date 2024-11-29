@@ -199,7 +199,7 @@ class Start_Game(tk.Frame):
                                   command=self.on_weapon_choice)
         self.weapon_1.place(x=100, y=200)
 
-        self.weapon_2 = tk.Button(self, text="2.Double Dague", fg="black", font=("arial", 20, "bold"),
+        self.weapon_2 = tk.Button(self, text="2.Double Dagues", fg="black", font=("arial", 20, "bold"),
                                   command=self.on_weapon_choice)
         self.weapon_2.place(x=100, y=300)
 
