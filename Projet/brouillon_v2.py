@@ -23,7 +23,7 @@ class Game(tk.Frame):
         self.lb_text.place(x=100, y=750)
 
         # Button "Continuer"
-        self.btn_continue = tk.Button(self.parent, text="Continuer", fg="black",bg="seashell3", font=("arial", 30))
+        self.btn_continue = tk.Button(self.parent, text="Continue", fg="black",bg="seashell3", font=("arial", 30))
         self.btn_continue.place(x=1650, y=620)
 
 
