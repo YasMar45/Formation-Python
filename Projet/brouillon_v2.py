@@ -26,11 +26,6 @@ class Game(tk.Frame):
         self.lb_text = tk.Label(self.frm_box, text="Bievenu(e) dans le monde de PythoLand Quest!", fg="black", bg="white", font=("arial", 20))
         self.lb_text.pack()
 
-        # Button "Continuer"
-        self.btn_continue = tk.Button(self.parent, text="Continuer", fg="black",bg="seashell3", font=("arial", 30))
-        self.btn_continue.place(x=1650, y=620)
-
-
 # Lancement du jeu
 root = tk.Tk()
 jeu = Game(root)

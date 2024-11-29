@@ -33,25 +33,29 @@ class Game(tk.Frame):
         self.btn_frame.place(relx=2 / 3, relwidth=1 / 3, relheight=3 / 4)
 
         # Boutons pour les choix
-        self.btn_1 = tk.Button(self.btn_frame, text="Chemin de Gauche")
+        self.btn_1 = tk.Button(self.btn_frame, text="Chemin de Gauche", command=lambda: self.make_choice_1('gauche'))
         self.btn_1.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
 
-        self.btn_2 = tk.Button(self.btn_frame, text="Chemin de Droite")
+        self.btn_2 = tk.Button(self.btn_frame, text="Chemin de Droite", command=lambda: self.make_choice_1('droite'))
         self.btn_2.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
-
-        # Button "Continuer"
-        self.btn_continue = tk.Button(self.parent, text="Continuer", fg="black", bg="seashell3", font=("arial", 30))
-        self.btn_continue.place(x=1650, y=780)
 
         # Boîte de message en bas
         self.frm_box = tk.LabelFrame(self.int, text="NARRATION", bg="white", relief=tk.SUNKEN)
         self.frm_box.place(rely=3 / 4, relwidth=1, relheight=1 / 4)
 
         # Texte dans la boîte de message
-        self.lb_text = tk.Label(self.frm_box, text="Bievenu(e) dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies", fg="black", bg="white",
-                                font=("arial", 20))
+        self.lb_text = tk.Label(self.frm_box,
+                                text="Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
+                                fg="black", bg="white", font=("arial", 20))
         self.lb_text.pack(expand=True, pady=20)
 
+    def make_choice_1(self, choice):
+        if choice == 'gauche':
+            self.lb_text.config(
+                text="Vous avez choisi le chemin de gauche.\nDéfaite")
+        elif choice == 'droite':
+            self.lb_text.config(
+                text="Vous avez choisi le chemin de droite.\nVous sortez du donjon")
 
 # Créer et exécuter l'application
 root = tk.Tk()
