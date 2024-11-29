@@ -3,7 +3,7 @@ import sys
 from tkinter import *
 
 #Fonction pour les textes qui defilent lentemenet
-def slow_print(text, delay=0.1):
+def slow_print(text, delay=0):
     for char in text:
         print(char, end="", flush=True)
         time.sleep(delay)

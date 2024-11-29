@@ -1,2 +1,10 @@
 Jeu inspiré des livres "livre dont vous êtes le héros"
 Des choix seront proposés au joueurs et selon ses choix, l'histoire et les événements seront différent !
+
+Interface: (voir le paint)
+1. En bas un rectangle pour délimiter le texte
+2. Le texte qui se retrouve dans le rectangle
+3. Un bouton "continuer" en haut à droite du rectanle pour pouvoir avancer
+4. Au debut une 'entry' pour demander le nom de son personnage
+5. En haut à droite de la frame, on peut faire apparaitre les choix
+6. (Plus Tard Vers le centre gauche, une image qui représente ce qu'il se passe
