@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import PhotoImage
 
 # Taille de la fenêtre
 largeur_fenetre = 1920
@@ -10,30 +11,50 @@ class Game(tk.Frame):
         super().__init__(parent)
         self.parent = parent
         self.parent.title("PYTHONLAND QUEST - Projet de Formation - Margoum Yassine - 2024")
-        self.parent.geometry("1920x1080")
+        self.parent.geometry(f"{largeur_fenetre}x{hauteur_fenetre}")
         self.parent.resizable(True, True)
 
-        # Interface en noir
-        self.int = tk.Frame(self.parent, width=largeur_fenetre, height=hauteur_fenetre, bg='black')
-        self.int.grid(row=0, column=0, sticky="nsew")
+        # Frame principale
+        self.int = tk.Frame(self.parent, bg='black')
+        self.int.pack(fill=tk.BOTH, expand=True)
 
-        self.parent.grid_rowconfigure(0, weight=1)
-        self.parent.grid_columnconfigure(0, weight=1)
+        # Frame pour l'image
+        self.frame_image = tk.Frame(self.int, bg='grey')
+        self.frame_image.place(relwidth=2 / 3, relheight=3 / 4)
 
-        self.frm_box = tk.LabelFrame(self.int, text="Narration", bg="white", width=1900, height=300, relief=tk.SUNKEN)
-        self.frm_box.grid(row=1, column=0, sticky="ew", pady=(0, 10))
+        # Image au-dessus de la boîte de message
+        self.image = PhotoImage(
+            file="/home/student213-06/PycharmProjects/Formation-Python/Projet/image projet/donjonstart.png")
+        self.img_label = tk.Label(self.frame_image, image=self.image)
+        self.img_label.pack(expand=True)
 
-        self.int.grid_rowconfigure(0, weight=1)
-        self.int.grid_rowconfigure(1, weight=0)
-        self.int.grid_columnconfigure(0, weight=1)
+        # Frame Button pour les choix
+        self.btn_frame = tk.Frame(self.int, bg='black')
+        self.btn_frame.place(relx=2 / 3, relwidth=1 / 3, relheight=3 / 4)
 
-        # Endroit où le texte apparait
-        self.lb_text = tk.Label(self.frm_box, text="Bienvenue dans le monde de PythoLand Quest!", fg="black",
-                                bg="white", font=("arial", 20))
-        self.lb_text.grid(pady=70)
+        # Boutons pour les choix
+        self.btn_1 = tk.Button(self.btn_frame, text="Chemin de Gauche")
+        self.btn_1.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+        self.btn_2 = tk.Button(self.btn_frame, text="Chemin de Droite")
+        self.btn_2.pack(expand=True, fill=tk.BOTH, padx=10, pady=10)
+
+        # Button "Continuer"
+        self.btn_continue = tk.Button(self.parent, text="Continuer", fg="black", bg="seashell3", font=("arial", 30))
+        self.btn_continue.place(x=1650, y=780)
+
+        # Boîte de message en bas
+        self.frm_box = tk.LabelFrame(self.int, text="NARRATION", bg="white", relief=tk.SUNKEN)
+        self.frm_box.place(rely=3 / 4, relwidth=1, relheight=1 / 4)
+
+        # Texte dans la boîte de message
+        self.lb_text = tk.Label(self.frm_box, text="Bievenu(e) dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies", fg="black", bg="white",
+                                font=("arial", 20))
+        self.lb_text.pack(expand=True, pady=20)
 
 
-# Fenetre de jeu
+# Créer et exécuter l'application
 root = tk.Tk()
-jeu = Game(root)
+game = Game(root)
 root.mainloop()
+
