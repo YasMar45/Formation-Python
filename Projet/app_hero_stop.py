@@ -72,7 +72,7 @@ class But_Jeu(tk.Frame):
         # Fond D'écran dans le menu
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/Projet/images/beginnerlogo.png")
+            file="images/beginnerlogo.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=0, relwidth=1, relheight=1)
@@ -106,7 +106,7 @@ class Start_Game(tk.Frame):
         # Fond d'écran pour l'introduction
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/Projet/images/donjonstart.png")
+            file="images/donjonstart.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
@@ -136,7 +136,7 @@ class Start_Game(tk.Frame):
         # Fond d'écran
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/Projet/images/demandenom.png")
+            file="images/demandenom.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
@@ -178,7 +178,7 @@ class Start_Game(tk.Frame):
         # Fond d'écran
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/Projet/images/weaponchoice.png")
+            file="images/weaponchoice.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=-75, relwidth=1, relheight=1)
