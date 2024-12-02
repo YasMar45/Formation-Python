@@ -19,14 +19,14 @@ def health_meca():
         print("Vous êtes au maximum de PV possible!")
 
 
-# Si PV arrive à 0, Défaite
+"""# Si PV arrive à 0, Défaite
 def check_health():
     global player_health
     if player_health <= 0:
         slow_print("Mais...")
         slow_print("Vous succombez de vos blessures,Défaite...")
         slow_print("Retour au menu principal")
-        game_menu()
+        game_menu()"""
 
 # Frame détaillé du menu principal
 class Frame_Accueil(tk.Frame):
@@ -37,7 +37,7 @@ class Frame_Accueil(tk.Frame):
         # Fond D'écran dans le menu
         background = tk.Label(self)
         img = tk.PhotoImage(
-            file="/Projet/images/elden_ring_projet_bg.png")
+            file="images/elden_ring_projet_bg.png")
         background.config(image=img)
         background.image = img  # Nécessaire pour conserver la référence de l'image
         background.place(x=0, y=0, relwidth=1, relheight=1)
@@ -233,9 +233,9 @@ main_window.pack(fill='both', expand=True)
 root.mainloop()
 
 
-# Fonction pour les textes qui defilent lentemenet
+"""# Fonction pour les textes qui defilent lentemenet
 def slow_print(text, delay=0.1):
     for char in text:
         print(char, end="", flush=True)
         time.sleep(delay)
-    print()
+    print()"""
