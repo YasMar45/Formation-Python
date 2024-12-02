@@ -228,15 +228,21 @@ class Game(tk.Frame):
         self.btn_2.config(text="Continuer", command=lambda: self.cave_area())
 
     def cave_area(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/thief_camp.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous vous aventurez dans cette grotte...\nVous remarquez un camp déjà mis en place\nQui sont les personnes dedans ?")
+        self.btn_1.config(text="Continuer", command=lambda: self.thief_camp())
+        self.btn_2.config(text="Continuer", command=lambda: self.thief_camp())
+
+    def thief_camp(self):
+        self.current_image = tk.PhotoImage(file="images/thief attack.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous essayer de ne pas faire de bruit pour ne pas éveillez les soupçons...\nEn ayant presque traversé le camps en toute discrétions, vous sentez quelques chose derrière vous...\nVous vous retournez et voyez un voleur vous bandir dessus\nQue faites-vous ?")
+        self.btn_1.config(text="")
+        self.btn_2.config(text="")
 
 
 # Créer et exécuter l'application
 root = tk.Tk()
 game = Game(root)
 root.mainloop()
-
-
-
-
-
