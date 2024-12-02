@@ -187,12 +187,29 @@ class Game(tk.Frame):
     def castle_area(self):
         self.current_image = tk.PhotoImage(file="images/castle_entrance.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Test")
+        self.lbl_text.config(text="Vous entrez dans ce gigantesque chateau ! Mais...\n vous sentez des tremblements assez fort\n Vous décidez d'aller voir!")
         self.btn_1.config(text="Continuer", command=lambda: self.castle_fight())
         self.btn_2.config(text="Continuer", command=lambda: self.castle_fight())
 
     def castle_fight(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/castle_fight.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave...\n Si vous voulez sauver les personnes restantes il faudra se battre !\nQue faites-vous ?")
+        self.btn_1.config(text="SE BATTRE!", command=lambda: self.minotaur_fight())
+        self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
+
+    def minotaur_fight(self):
+        self.current_image = tk.PhotoImage(file="images/minotaur_fight.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="X")
+
+    def minotaur_end(self):
+        self.current_image = tk.PhotoImage(file="images/defeat.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous décidez de vous enfuir en laissant les autres dans la mort mais...\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux...\n Défaite...")
+        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
     def cave_zone(self):
         pass
