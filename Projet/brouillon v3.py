@@ -117,9 +117,31 @@ class Game(tk.Frame):
 
     def make_choice_weapon(self, choice):
         if choice == "Epée":
-            pass
+            self.lbl_text.config(text="Vous avez choisi l'épéé !\n Très bon choix !")
+            self.btn_1.config(text="Continuer", command=lambda: self.castle_zone())
+            self.btn_2.config(text="Continuer", command=lambda: self.castle_zone())
+            self.current_image = tk.PhotoImage(file="images/sword.png")
+            self.lbl_image.config(image=self.current_image)
         elif choice == "Massue":
-            pass
+            self.lbl_text.config(text="Vous avez choisi la Massue !\n Très bon choix !")
+            self.btn_1.config(text="Continuer", command=lambda: self.castle_zone())
+            self.btn_2.config(text="Continuer", command=lambda: self.castle_zone())
+            self.current_image = tk.PhotoImage(file="images/massue.png")
+            self.lbl_image.config(image=self.current_image)
+
+    def castle_zone(self):
+        self.current_image = tk.PhotoImage(file="images/castle.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Vous arrivez après quelques heures de marche devant un village mais sans manquer son énorme chateau au centre!\nQue faites-vous ?")
+        self.btn_1.config(text="Entrer dans le village", command=lambda: self.village_zone())
+        self.btn_2.config(text="Passer votre chemin", command=lambda: self.cave_zone())
+
+    def village_zone(self):
+        pass
+
+    def cave_zone(self):
+        pass
 
 
 
@@ -127,6 +149,7 @@ class Game(tk.Frame):
 root = tk.Tk()
 game = Game(root)
 root.mainloop()
+
 
 
 

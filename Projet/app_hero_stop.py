@@ -39,7 +39,7 @@ class Frame_Accueil(tk.Frame):
         img = tk.PhotoImage(
             file="images/elden_ring_projet_bg.png")
         background.config(image=img)
-        background.image = img  # Nécessaire pour conserver la référence de l'image
+        background.image = img
         background.place(x=0, y=0, relwidth=1, relheight=1)
         bg = background
 
