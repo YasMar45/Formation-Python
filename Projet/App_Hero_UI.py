@@ -238,8 +238,11 @@ class Game(tk.Frame):
         self.current_image = tk.PhotoImage(file="images/thief attack.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text="Vous essayer de ne pas faire de bruit pour ne pas éveillez les soupçons...\nEn ayant presque traversé le camps en toute discrétions, vous sentez quelques chose derrière vous...\nVous vous retournez et voyez un voleur vous bandir dessus\nQue faites-vous ?")
-        self.btn_1.config(text="")
-        self.btn_2.config(text="")
+        self.btn_1.config(text="Contrer son coup !", command=lambda: self.thief_attack())
+        self.btn_2.config(text="Esquiver son coup !", command=lambda: self.thief_attack())
+
+    def thief_attack(self):
+        pass
 
 
 # Créer et exécuter l'application

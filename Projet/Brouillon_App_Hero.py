@@ -14,6 +14,15 @@ class Game(tk.Frame):
         self.parent.geometry(f"{largeur_fenetre}x{hauteur_fenetre}")
         self.parent.resizable(True, True)
 
+        #Point de vie
+        self.health = 50
+        if self.health <= 0:
+            self.health = 0
+            pass
+
+        #Arme
+        self.weapon = ''
+
         # Frame principale
         self.int = tk.Frame(self.parent, bg='black')
         self.int.pack(fill=tk.BOTH, expand=True)
@@ -45,9 +54,16 @@ class Game(tk.Frame):
 
         # Texte dans la boîte de message
         self.lbl_text = tk.Label(self.frm_box,
-                                 text="Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
+                                 text=f"Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici avec comme base {self.health} PV dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
                                  fg="black", bg="white", font=("arial", 20))
         self.lbl_text.pack(expand=True, pady=20)
+
+    # Ecran de défaite quand PV = 0
+    def death_screen(self):
+        self.current_image = tk.PhotoImage(file="images/defeat.png")
+        self.lbl_image.config(image=self.current_image)
+        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
     # Commande pour quitter le jeu sur un bouton
     def quit_game(self):
@@ -58,7 +74,7 @@ class Game(tk.Frame):
         self.current_image = tk.PhotoImage(file="images/donjonstart.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(
-                            text="Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
+                            text=f"Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici avec comme base {self.health} PV dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
                             fg="black", bg="white", font=("arial", 20))
         self.btn_1.config(text="Chemin de Gauche", command=lambda: self.make_choice_1('gauche'))
         self.btn_2.config(text="Chemin de Droite", command=lambda: self.make_choice_1('droite'))
@@ -73,7 +89,6 @@ class Game(tk.Frame):
             #Bouton pour Rejouer du début ou pour quitter le jeu
             self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
             self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
-
 
         elif choice == 'droite':
             self.lbl_text.config(
@@ -101,8 +116,9 @@ class Game(tk.Frame):
 
     def make_choice_inn(self, choice):
         if choice == 'Se reposer':
+            self.health += 20
             self.lbl_text.config(
-                text="Après quelques heures de repose, vous vous réveillez en forme\nVous voyez sur la table près de vous, deux armes: Une épée ou une Massue\nLaquelle prenez-vous ?")
+                text=f"Après quelques heures de repose, vous vous réveillez en forme\nVous regagnez +20PV, Vous êtes à {self.health} PV !\nVous voyez sur la table près de vous, deux armes: Une épée ou une Massue\nLaquelle prenez-vous ?")
             self.btn_1.config(text="Epée", command=lambda: self.make_choice_weapon('Epée'))
             self.btn_2.config(text="Massue", command=lambda: self.make_choice_weapon('Massue'))
             self.current_image = tk.PhotoImage(file="images/weaponchoice.png")
@@ -118,13 +134,15 @@ class Game(tk.Frame):
 
     def make_choice_weapon(self, choice):
         if choice == "Epée":
-            self.lbl_text.config(text="Vous avez choisi l'épéé !\n Très bon choix !")
+            self.weapon = "Epée"
+            self.lbl_text.config(text=f"Vous avez choisi {self.weapon} !\n Très bon choix !")
             self.btn_1.config(text="Continuer", command=lambda: self.castle_zone())
             self.btn_2.config(text="Continuer", command=lambda: self.castle_zone())
             self.current_image = tk.PhotoImage(file="images/sword.png")
             self.lbl_image.config(image=self.current_image)
         elif choice == "Massue":
-            self.lbl_text.config(text="Vous avez choisi la Massue !\n Très bon choix !")
+            self.weapon = "Massue"
+            self.lbl_text.config(text=f"Vous avez choisi la {self.weapon}!\n Très bon choix !")
             self.btn_1.config(text="Continuer", command=lambda: self.castle_zone())
             self.btn_2.config(text="Continuer", command=lambda: self.castle_zone())
             self.current_image = tk.PhotoImage(file="images/massue.png")
@@ -200,9 +218,10 @@ class Game(tk.Frame):
         self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
 
     def minotaur_fight(self):
+        self.health -= 50
         self.current_image = tk.PhotoImage(file="images/minotaur_win.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Vous prenez votre arme et partez à l'assaut du Minotaure déjà un peu affaibli par le peu de soldats restants...\n Après un combat long et dur, vous avec vaincu le Minotaure !")
+        self.lbl_text.config(text=f"Vous prenez votre {self.weapon} et partez à l'assaut du Minotaure déjà un peu affaibli par le peu de soldats restants...\n Après un combat long et dur, vous avec vaincu le Minotaure !\n Vous avez perdu 50PV, il vous reste {self.health} PV")
         self.btn_1.config(text="Continuer", command=lambda: self.victory_castle())
         self.btn_2.config(text="Continuer", command=lambda: self.victory_castle())
 
@@ -238,11 +257,22 @@ class Game(tk.Frame):
         self.current_image = tk.PhotoImage(file="images/thief attack.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text="Vous essayer de ne pas faire de bruit pour ne pas éveillez les soupçons...\nEn ayant presque traversé le camps en toute discrétions, vous sentez quelques chose derrière vous...\nVous vous retournez et voyez un voleur vous bandir dessus\nQue faites-vous ?")
-        self.btn_1.config(text="")
-        self.btn_2.config(text="")
+        self.btn_1.config(text="Contrer son coup !", command=lambda: self.thief_attack())
+        self.btn_2.config(text="Esquiver son coup !", command=lambda: self.thief_attack())
 
+    def thief_attack(self):
+        self.health -= 20
+        self.current_image = tk.PhotoImage(file="images/thief_win.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text=f"Vous arrivez à abattre le voleur avec votre {self.weapon}\nVous avez perdu 20PV, il vous reste {self.health} PV")
+        self.btn_1.config(text="Continuer", command=lambda: self.treasure_end())
+        self.btn_2.config(text="Continuer", command=lambda: self.treasure_end())
+
+    def treasure_end(self):
+        pass
 
 # Créer et exécuter l'application
 root = tk.Tk()
 game = Game(root)
 root.mainloop()
+
