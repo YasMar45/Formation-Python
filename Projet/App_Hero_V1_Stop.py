@@ -41,7 +41,6 @@ class Frame_Accueil(tk.Frame):
         background.config(image=img)
         background.image = img
         background.place(x=0, y=0, relwidth=1, relheight=1)
-        bg = background
 
         # Button du Menu Princiaple
         tk.Label(self, text="PYTHONLAND QUEST", fg="red4", bg="white", font=("arial", 100), relief=tkinter.RIDGE).pack(

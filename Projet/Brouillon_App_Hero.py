@@ -1,8 +1,5 @@
 import tkinter as tk
 
-import click
-import orca.braille
-
 # Taille de la fenêtre
 largeur_fenetre = 1920
 hauteur_fenetre = 1080
@@ -69,7 +66,7 @@ class Game(tk.Frame):
     def make_choice_1(self, choice):
         if choice == 'gauche':
             self.lbl_text.config(
-                text="Vous avez choisi le chemin de gauche.\nPerdu dans la pénombre, vous tombez dans un piège qui vous tue\nDéfaite")
+                text="Vous avez choisi le chemin de gauche.\nPerdu dans la pénombre, vous tombez dans un piège qui vous tue instanément sans savoir ce que c'était...\nDéfaite...")
             self.current_image = tk.PhotoImage(file="images/defeat.png")
             self.lbl_image.config(image=self.current_image)
 
@@ -145,7 +142,7 @@ class Game(tk.Frame):
         self.current_image = tk.PhotoImage(file="images/castle.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(
-            text="Vous arrivez proche des portes du village proche du chateau mais un soldat gardant la porte vous interpelle...\n 'Quel est votre nom avant d'entrer ?'")
+            text="Vous arrivez près de l'entrée du village proche du chateau mais un soldat gardant la porte vous interpelle...\n 'Quel est votre nom avant d'entrer ?'")
         self.btn_1.config(text="Continuer", command=lambda: self.name_entry())
         self.btn_2.config(text="Continuer", command=lambda: self.name_entry())
 
@@ -169,15 +166,9 @@ class Game(tk.Frame):
         self.name_choice.forget()
         self.current_image = tk.PhotoImage(file="images/village_entrance.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Vous pouvez rentrer à PythonVillage !\n Que faites-vous ?")
+        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Soldat: 'Vous pouvez rentrer à PythonVillage !'\n Que faites-vous ?")
         self.btn_1.config(text="Direction le chateau", command=lambda: self.castle_area())
         self.btn_2.config(text="Aller au bar", command=lambda: self.tavern_area())
-
-    def castle_area(self):
-        pass
-
-    def cave_zone(self):
-        pass
 
     def tavern_area(self):
         self.current_image = tk.PhotoImage(file="images/tavern.png")
@@ -192,6 +183,20 @@ class Game(tk.Frame):
         self.lbl_text.config(text="Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipement...\nDéfaite...")
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
         self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+
+    def castle_area(self):
+        self.current_image = tk.PhotoImage(file="images/castle_entrance.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Test")
+        self.btn_1.config(text="Continuer", command=lambda: self.castle_fight())
+        self.btn_2.config(text="Continuer", command=lambda: self.castle_fight())
+
+    def castle_fight(self):
+        pass
+
+    def cave_zone(self):
+        pass
+
 
 # Créer et exécuter l'application
 root = tk.Tk()
