@@ -200,9 +200,11 @@ class Game(tk.Frame):
         self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
 
     def minotaur_fight(self):
-        self.current_image = tk.PhotoImage(file="images/minotaur_fight.png")
+        self.current_image = tk.PhotoImage(file="images/minotaur_win.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="X")
+        self.lbl_text.config(text="Vous prenez votre arme et partez à l'assaut du Minotaure déjà un peu affaibli par le peu de soldats restants...\n Après un combat long et dur, vous avec vaincu le Minotaure !")
+        self.btn_1.config(text="Continuer", command=lambda: self.victory_castle())
+        self.btn_2.config(text="Continuer", command=lambda: self.victory_castle())
 
     def minotaur_end(self):
         self.current_image = tk.PhotoImage(file="images/defeat.png")
@@ -211,8 +213,17 @@ class Game(tk.Frame):
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
         self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
+    def victory_castle(self):
+        self.current_image = tk.PhotoImage(file="images/king_win.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Malheureusement, le Roi étant mort, le peuple est d'accord pour faire de vous le Roi de PythoVillage!!\nVous avez les épaules pour protéger cette cité!!\nFélicitations, vous avez réussi une fin!")
+        self.btn_1.config(text="Rejouer pour avoir une autre fin ?", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+
     def cave_zone(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/cave_zone.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="x")
 
 
 # Créer et exécuter l'application
