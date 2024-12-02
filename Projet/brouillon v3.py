@@ -176,6 +176,9 @@ class Game(tk.Frame):
     def castle_area(self):
         pass
 
+    def cave_zone(self):
+        pass
+
     def tavern_area(self):
         self.current_image = tk.PhotoImage(file="images/tavern.png")
         self.lbl_image.config(image=self.current_image)
@@ -189,9 +192,6 @@ class Game(tk.Frame):
         self.lbl_text.config(text="Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipement...\nDéfaite...")
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
         self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
-
-    def cave_zone(self):
-        pass
 
 # Créer et exécuter l'application
 root = tk.Tk()
