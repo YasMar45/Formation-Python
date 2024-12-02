@@ -223,7 +223,12 @@ class Game(tk.Frame):
     def cave_zone(self):
         self.current_image = tk.PhotoImage(file="images/cave_zone.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="x")
+        self.lbl_text.config(text="Vous ignorez le village et décidez de continuer votre route\nVous entendez de forts bruit venant du village mais cela ne doit pas être bien important...\n Vous entrez dans une grotte magnifique, peut-être un trésor vous y attends!!")
+        self.btn_1.config(text="Continuer", command=lambda: self.cave_area())
+        self.btn_2.config(text="Continuer", command=lambda: self.cave_area())
+
+    def cave_area(self):
+        pass
 
 
 # Créer et exécuter l'application

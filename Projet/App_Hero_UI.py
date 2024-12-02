@@ -166,7 +166,7 @@ class Game(tk.Frame):
         self.name_choice.forget()
         self.current_image = tk.PhotoImage(file="images/village_entrance.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Vous pouvez rentrer à PythonVillage !\n Que faites-vous ?")
+        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Soldat: 'Vous pouvez rentrer à PythonVillage !'\n Que faites-vous ?")
         self.btn_1.config(text="Direction le chateau", command=lambda: self.castle_area())
         self.btn_2.config(text="Aller au bar", command=lambda: self.tavern_area())
 
@@ -187,14 +187,47 @@ class Game(tk.Frame):
     def castle_area(self):
         self.current_image = tk.PhotoImage(file="images/castle_entrance.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Test")
+        self.lbl_text.config(text="Vous entrez dans ce gigantesque chateau ! Mais...\n vous sentez des tremblements assez fort\n Vous décidez d'aller voir!")
         self.btn_1.config(text="Continuer", command=lambda: self.castle_fight())
         self.btn_2.config(text="Continuer", command=lambda: self.castle_fight())
 
     def castle_fight(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/castle_fight.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave...\n Si vous voulez sauver les personnes restantes il faudra se battre !\nQue faites-vous ?")
+        self.btn_1.config(text="SE BATTRE!", command=lambda: self.minotaur_fight())
+        self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
+
+    def minotaur_fight(self):
+        self.current_image = tk.PhotoImage(file="images/minotaur_win.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous prenez votre arme et partez à l'assaut du Minotaure déjà un peu affaibli par le peu de soldats restants...\n Après un combat long et dur, vous avec vaincu le Minotaure !")
+        self.btn_1.config(text="Continuer", command=lambda: self.victory_castle())
+        self.btn_2.config(text="Continuer", command=lambda: self.victory_castle())
+
+    def minotaur_end(self):
+        self.current_image = tk.PhotoImage(file="images/defeat.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous décidez de vous enfuir en laissant les autres dans la mort mais...\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux...\n Défaite...")
+        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+
+    def victory_castle(self):
+        self.current_image = tk.PhotoImage(file="images/king_win.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Malheureusement, le Roi étant mort, le peuple est d'accord pour faire de vous le Roi de PythoVillage!!\nVous avez les épaules pour protéger cette cité!!\nFélicitations, vous avez réussi une fin!")
+        self.btn_1.config(text="Rejouer pour avoir une autre fin ?", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
     def cave_zone(self):
+        self.current_image = tk.PhotoImage(file="images/cave_zone.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous ignorez le village et décidez de continuer votre route\nVous entendez de forts bruit venant du village mais cela ne doit pas être bien important...\n Vous entrez dans une grotte magnifique, peut-être un trésor vous y attends!!")
+        self.btn_1.config(text="Continuer", command=lambda: self.cave_area())
+        self.btn_2.config(text="Continuer", command=lambda: self.cave_area())
+
+    def cave_area(self):
         pass
 
 
@@ -202,7 +235,6 @@ class Game(tk.Frame):
 root = tk.Tk()
 game = Game(root)
 root.mainloop()
-
 
 
 
