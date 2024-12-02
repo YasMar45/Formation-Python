@@ -269,7 +269,11 @@ class Game(tk.Frame):
         self.btn_2.config(text="Continuer", command=lambda: self.treasure_end())
 
     def treasure_end(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/treasure.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Après votre confrontation, vous arrivez dans leur salle aux trésors !\nFélicitation ! La richesse vous attends!")
+        self.btn_1.config(text="Rejouer pour avoir une autre fin ?", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
 # Créer et exécuter l'application
 root = tk.Tk()
