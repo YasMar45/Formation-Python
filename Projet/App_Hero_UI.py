@@ -1,4 +1,5 @@
 import tkinter as tk
+import random
 
 # Taille de la fenêtre
 largeur_fenetre = 1920
