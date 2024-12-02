@@ -117,14 +117,48 @@ class Game(tk.Frame):
 
     def make_choice_weapon(self, choice):
         if choice == "Epée":
-            pass
+            self.lbl_text.config(text="Vous avez choisi l'épéé !\n Très bon choix !")
+            self.btn_1.config(text="Continuer", command=lambda: self.castle_zone())
+            self.btn_2.config(text="Continuer", command=lambda: self.castle_zone())
+            self.current_image = tk.PhotoImage(file="images/sword.png")
+            self.lbl_image.config(image=self.current_image)
         elif choice == "Massue":
-            pass
+            self.lbl_text.config(text="Vous avez choisi la Massue !\n Très bon choix !")
+            self.btn_1.config(text="Continuer", command=lambda: self.castle_zone())
+            self.btn_2.config(text="Continuer", command=lambda: self.castle_zone())
+            self.current_image = tk.PhotoImage(file="images/massue.png")
+            self.lbl_image.config(image=self.current_image)
 
+    def castle_zone(self):
+        self.current_image = tk.PhotoImage(file="images/castle.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Vous arrivez après quelques heures de marche devant un village mais sans manquer son énorme chateau au centre!\nQue faites-vous ?")
+        self.btn_1.config(text="Entrer dans le village", command=lambda: self.village_zone())
+        self.btn_2.config(text="Passer votre chemin", command=lambda: self.cave_zone())
 
+    def village_zone(self):
+        self.current_image = tk.PhotoImage(file="images/castle.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Vous arrivez proche des portes du village proche du chateau mais un soldat gardant la porte vous interpelle...\n 'Quel est votre nom avant d'entrer ?'")
+        self.btn_1.config(text="Continuer", command=lambda: self.name_entry())
+        self.btn_2.config(text="Continuer", command=lambda: self.name_entry())
+
+    def name_entry(self):
+        self.current_image = tk.PhotoImage(file="images/demandenom.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Entrez votre nom ici !:")
+        self.name_choice = tk.Entry(self.frm_box, width=20)
+        self.name_choice.pack(pady=30)
+
+    def cave_zone(self):
+        pass
 
 # Créer et exécuter l'application
 root = tk.Tk()
 game = Game(root)
 root.mainloop()
+
 
