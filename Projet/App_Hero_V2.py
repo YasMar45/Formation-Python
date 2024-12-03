@@ -1,4 +1,5 @@
 import tkinter as tk
+import random
 
 # Taille de la fenêtre
 largeur_fenetre = 1920
@@ -26,7 +27,7 @@ class Game(tk.Frame):
         #Arme
         self.weapon = ''
 
-        # Stat du monstre première rencontre
+        # Stat Monstre 1
         self.monster_health = 20
         self.monster_damage = 5
 
@@ -139,6 +140,61 @@ class Game(tk.Frame):
     def first_fight(self):
         self.current_image = tk.PhotoImage(file="images/first encounter.png")
         self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?")
+        self.btn_1.config(text="Attaquer", command=lambda: self.fight_screen())
+        self.btn_2.config(text="Fuir", command=lambda: self.road_choice())
+
+    def fight_screen(self):
+        self.current_image = tk.PhotoImage(file="images/fight.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous avez choisi d'attaquer !\nLe combat commence !\nQue faites-vous ?")
+        #Bouton durant le combat pour Attaquer ou Se Défendre
+        self.btn_1.config(text="Attaquer", command=lambda: self.attack())
+        self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
+
+    def attack(self):
+        # Joueur qui attaque le monstre
+        self.monster_health -= self.player_damage
+        self.lbl_text.config(text=f"Vous attaquez !\nVous infligez {self.player_damage} de dégats\nIl vous inflige en retour {self.monster_damage} points de dégats\nPV du monstre restant: {self.monster_health}")
+        if self.monster_health <= 0:
+            self.lbl_text.config(text="Vous avez vaincu le monstre !")
+            self.btn_1.config(text="Continuer", command=lambda: self.road_choice())
+            self.btn_2.config(text="Continuer", command=lambda: self.road_choice())
+        else:
+            self.monster_attack()
+
+    def defend(self):
+        self.health -= self.monster_damage - 5
+        self.update_stats()
+        if self.health <= 0:
+            self.restart_game()
+        else:
+            self.lbl_text.config(text=f"Vous vous défendez! Réduisez les dégâts reçus.\nVos PV: {self.health}")
+            self.btn_1.config(text="Attaquer", command=lambda: self.attack())
+            self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
+
+    def monster_attack(self):
+        self.health -= self.monster_damage
+        self.update_stats()
+        if self.health <= 0:
+            self.restart_game()
+
+
+    def update_stats(self):
+        self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}")
+
+    def road_choice(self):
+        self.current_image = tk.PhotoImage(file="images/two_road.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="X")
+        self.btn_1.config(text="Direction le chateau", command=lambda: self.castle_area())
+        self.btn_2.config(text="Aller au bar", command=lambda: self.cave_area())
+
+    def castle_area(self):
+        pass
+
+    def cave_area(self):
+        pass
 
 # Créer et exécuter l'application
 root = tk.Tk()
