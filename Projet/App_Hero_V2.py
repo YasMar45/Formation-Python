@@ -254,7 +254,22 @@ class Game(tk.Frame):
         self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
     def tavern_area(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/tavern.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous allez au bar boire un coup mais avec l'ambiance, cela va bien plus loin...")
+        self.btn_1.config(text="Continuer", command=lambda: self.drunk_lose())
+        self.btn_2.config(text="Continuer", command=lambda: self.drunk_lose())
+
+    def drunk_lose(self):
+        self.weapon = ''
+        self.player_damage = 0
+        self.health = 10
+        self.update_stats()
+        self.current_image = tk.PhotoImage(file="images/defeat.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipement...\nTotalement dépuiller...\nDéfaite...")
+        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
     def cave_area(self):
         pass
