@@ -1,39 +1,28 @@
 import tkinter as tk
 import random
 
-# Taille de la fenêtre
-largeur_fenetre = 1920
-hauteur_fenetre = 1080
 
-player_name = ""
 
 class Game(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
+
+        self.player_name = ""
+        # Point de vie
+        self.health = 50
+        # Attaque du joueur
+        self.player_damage = 0
+        # Arme
+        self.weapon = ''
+        # Stat Monstre
+        self.monster = "monstre"
+        self.monster_health = 20
+        self.monster_damage = 5
+
         self.parent = parent
         self.parent.title("PYTHONLAND QUEST - Projet de Formation - Margoum Yassine - 2024")
-        self.parent.geometry(f"{largeur_fenetre}x{hauteur_fenetre}")
+        self.parent.geometry(f"1920x1080")
         self.parent.resizable(True, True)
-
-        #Point de vie
-        self.health = 50
-        if self.health <= 0:
-            self.health = 0
-            pass
-
-        #Attaque du joueur
-        self.player_damage = 0
-
-        #Arme
-        self.weapon = ''
-
-        # Stat Monstre
-        self.monster_health = 20
-        self.monster_damage = random.randint(5, 10)
-
-        # Stat Minotaure
-        self.minotaure_health = 50
-        self.minotaure_damage = random.randint(10, 15)
 
         # Frame principale
         self.int = tk.Frame(self.parent, bg='black')
@@ -66,22 +55,37 @@ class Game(tk.Frame):
 
         # Texte dans la boîte de message
         self.lbl_text = tk.Label(self.frm_box,
-                                 text=f"Bienvenue dans le monde de PythoLand Quest!\nVous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\nVotre quête commence ici avec comme base {self.health} PV dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
+                                 text=f"Bienvenue dans le monde de PythoLand Quest!\n"
+                                      f"Vous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\n"
+                                      f"Votre quête commence ici avec comme base {self.health} PV dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
                                  fg="black", bg="white", font=("arial", 20))
         self.lbl_text.pack(expand=True, pady=20)
 
-        #Affichage PV et ATT du joueur durant le jeu
+        # Affichage PV et ATT du joueur durant le jeu
         self.frm_box2 = tk.LabelFrame(self.int, text="Vos statistiques", bg="white", relief=tk.SUNKEN)
         self.frm_box2.place(relx=0, rely=0, relwidth=0.09, relheight=0.15)
-        self.lbl_text2 = tk.Label(self.frm_box2,text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",fg="black", bg="white", font=("arial", 15, "bold"))
+        self.lbl_text2 = tk.Label(self.frm_box2, text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",
+                                  fg="black", bg="white", font=("arial", 15, "bold"))
         self.lbl_text2.pack(expand=True, pady=20)
+
+        # Ce widget sera affiché dans une fenêtre spécifique au cours de la partie
+        self.name_choice = tk.Entry(self.frm_box, width=30)
+
+    def modify_frame(self, photo_path, text_label, text_button_1, text_button_2, function_button_1, function_button_2):
+        self.current_image = tk.PhotoImage(file=photo_path)
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text=text_label)
+        self.btn_1.config(text=text_button_1, command=lambda: function_button_1())
+        self.btn_2.config(text=text_button_2, command=lambda: function_button_2())
+
+
 
     # Ecran de défaite quand PV = 0
     def death_screen(self):
         self.current_image = tk.PhotoImage(file="images/defeat.png")
         self.lbl_image.config(image=self.current_image)
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
 
     # Commande pour revenir au début pour recommencer après une défaite
     def restart_game(self):
@@ -93,17 +97,6 @@ class Game(tk.Frame):
         self.btn_1.config(text="Chemin de Gauche", command=lambda: self.make_choice_1('gauche'))
         self.btn_2.config(text="Chemin de Droite", command=lambda: self.make_choice_1('droite'))
 
-    def death_screen(self):
-        self.health = 50
-        self.current_image = tk.PhotoImage(file="images/defeat.png")
-        self.lbl_image.config(image=self.current_image)
-        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
-
-    # Commande pour quitter le jeu sur un bouton
-    def quit_game(self):
-        self.quit()
-
     def make_choice_1(self, choice):
         if choice == 'gauche':
             self.lbl_text.config(
@@ -113,7 +106,7 @@ class Game(tk.Frame):
 
             #Bouton pour Rejouer du début ou pour quitter le jeu
             self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-            self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+            self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
 
         elif choice == 'droite':
             self.current_image = tk.PhotoImage(file="images/weaponchoice.png")
@@ -149,11 +142,14 @@ class Game(tk.Frame):
             self.btn_2.config(text="Continuer", command=lambda: self.first_fight())
 
     def first_fight(self):
-        self.current_image = tk.PhotoImage(file="images/first encounter.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?")
-        self.btn_1.config(text="Attaquer", command=lambda: self.fight_screen())
-        self.btn_2.config(text="Fuir", command=lambda: self.road_choice())
+        self.modify_frame("images/first encounter.png",
+                          "Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?",
+                          "Attaquer", "Fuir", self.fight_screen, self.road_choice)
+        # self.current_image = tk.PhotoImage(file="images/first encounter.png")
+        # self.lbl_image.config(image=self.current_image)
+        # self.lbl_text.config(text="Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?")
+        # self.btn_1.config(text="Attaquer", command=lambda: self.fight_screen())
+        # self.btn_2.config(text="Fuir", command=lambda: self.road_choice())
 
     def fight_screen(self):
         self.current_image = tk.PhotoImage(file="images/fight.png")
@@ -166,17 +162,19 @@ class Game(tk.Frame):
     def attack(self):
         self.monster_health -= self.player_damage
         self.lbl_text.config(text=f"Vous attaquez !\nVous infligez {self.player_damage} de dégats\nIl vous inflige en retour {self.monster_damage} points de dégats\nPV du monstre restant: {self.monster_health}")
+        self.update_stats()
         if self.monster_health <= 0:
             self.lbl_text.config(text="Vous avez vaincu le monstre !")
             self.btn_1.config(text="Continuer", command=lambda: self.road_choice())
             self.btn_2.config(text="Continuer", command=lambda: self.road_choice())
-        elif self.health <= 0:
-            self.death_screen()
         else:
-            self.monster_attack()
+            self.health -= self.monster_damage + random.randint(0, 5)
+            self.update_stats()
+        if self.health <= 0:
+            self.death_screen()
 
     def defend(self):
-        self.health -= random.randint(5, 10) - 5
+        self.health -= self.monster_damage + random.randint(0, 5) - 5
         self.update_stats()
         if self.health <= 0:
             self.death_screen()
@@ -184,12 +182,6 @@ class Game(tk.Frame):
             self.lbl_text.config(text=f"Vous vous défendez! Réduisez les dégâts reçus.\nVos PV: {self.health}")
             self.btn_1.config(text="Attaquer", command=lambda: self.attack())
             self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
-
-    def monster_attack(self):
-        self.health -= self.monster_damage
-        self.update_stats()
-        if self.health <= 0:
-            self.restart_game()
 
     def update_stats(self):
         self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}")
@@ -213,85 +205,49 @@ class Game(tk.Frame):
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(
             text="Entrez votre nom ici !:")
-        self.name_choice = tk.Entry(self.frm_box, width=30)
         self.name_choice.pack(pady=30)
         self.btn_1.config(text="Continuer", command=lambda: self.name_select())
         self.btn_2.config(text="Continuer", command=lambda: self.name_select())
+
     def name_select(self):
-        global player_name
-        player_name = self.name_choice.get()
+        self.player_name = self.name_choice.get()
         self.village_zone()
 
     def village_zone(self):
-        global player_name
         self.name_choice.forget()
         self.health += 20
         self.update_stats()
         self.current_image = tk.PhotoImage(file="images/village_entrance.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?")
-        self.btn_1.config(text="Direction l'entrée du chateau", command=lambda: self.castle_fight())
+        self.lbl_text.config(text= f"Bievenu(e) {self.player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?")
+        self.btn_1.config(text="Direction l'entrée du chateau", command=lambda: self.castle_fight_screen())
         self.btn_2.config(text="Aller au bar", command=lambda: self.tavern_area())
 
-    def castle_fight(self):
+    def castle_fight_screen(self):
         self.current_image = tk.PhotoImage(file="images/castle_fight.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(
             text="Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave...\n Si vous voulez sauver les personnes restantes il faudra se battre !\nQue faites-vous ?")
-        self.btn_1.config(text="SE BATTRE!", command=lambda: self.minotaur_fight())
+        self.btn_1.config(text="SE BATTRE!", command=lambda: self.minotaur_fight_screen())
         self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
 
-    def minotaur_fight(self):
+    def minotaur_fight_screen(self):
+        self.monster = "minotaure"
+        self.monster_health = 50
+        self.monster_damage = 10
+        self.modify_frame()
         self.current_image = tk.PhotoImage(file="images/minotaur_fight.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text="X")
-        self.btn_1.config(text="Attaquer", command=lambda: self.fight_screen())
-        self.btn_2.config(text="Fuir", command=lambda: self.road_choice())
-
-    def fight_screen(self):
-        self.current_image = tk.PhotoImage(file="images/fight.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(
-            text=f"Vous avez choisi d'attaquer !\nLe combat commence !\n Infos de l'adversaire: {self.monster_health} PV\nQue faites-vous ?")
-        # Bouton durant le combat pour Attaquer ou Se Défendre
         self.btn_1.config(text="Attaquer", command=lambda: self.attack())
-        self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
-
-    def attack(self):
-        self.minotaure_health -= self.player_damage
-        self.lbl_text.config(
-            text=f"Vous attaquez !\nVous infligez {self.player_damage} de dégats\nIl vous inflige en retour {self.monster_damage} points de dégats\nPV du monstre restant: {self.monster_health}")
-        if self.minotaure_health <= 0:
-            self.lbl_text.config(text="Vous avez vaincu le monstre !")
-            self.btn_1.config(text="Continuer", command=lambda: self.road_choice())
-            self.btn_2.config(text="Continuer", command=lambda: self.road_choice())
-        elif self.health <= 0:
-            self.death_screen()
-        else:
-            self.monster_attack()
-
-    def defend(self):
-        self.health -= self.monster_damage - 5
-        self.update_stats()
-        if self.health <= 0:
-            self.death_screen()
-        else:
-            self.lbl_text.config(text=f"Vous vous défendez! Réduisez les dégâts reçus.\nVos PV: {self.health}")
-            self.btn_1.config(text="Attaquer", command=lambda: self.attack())
-            self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
-
-    def monster_attack(self):
-        self.health -= self.monster_damage
-        self.update_stats()
-        if self.health <= 0:
-            self.restart_game()
+        self.btn_2.config(text="Fuir", command=lambda: self.defend())
 
     def minotaur_end(self):
         self.current_image = tk.PhotoImage(file="images/defeat.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text="Vous décidez de vous enfuir en laissant les autres dans la mort mais...\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux...\n Défaite...")
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
 
     def tavern_area(self):
         self.current_image = tk.PhotoImage(file="images/tavern.png")
@@ -309,7 +265,7 @@ class Game(tk.Frame):
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text="Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipement...\nTotalement dépuiller...\nDéfaite...")
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
 
     def cave_area(self):
         pass
