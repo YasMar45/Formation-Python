@@ -71,6 +71,7 @@ class Game(tk.Frame):
         # Ce widget sera affiché dans une fenêtre spécifique au cours de la partie
         self.name_choice = tk.Entry(self.frm_box, width=30)
 
+    # Fonction pour modifier une frame + rapidement (moins de ligne dans le code)
     def modify_frame(self, photo_path, text_label, text_button_1, text_button_2, function_button_1, function_button_2):
         self.current_image = tk.PhotoImage(file=photo_path)
         self.lbl_image.config(image=self.current_image)
@@ -78,10 +79,10 @@ class Game(tk.Frame):
         self.btn_1.config(text=text_button_1, command=lambda: function_button_1())
         self.btn_2.config(text=text_button_2, command=lambda: function_button_2())
 
-
-
     # Ecran de défaite quand PV = 0
     def death_screen(self):
+        self.health = 50
+        self.update()
         self.current_image = tk.PhotoImage(file="images/defeat.png")
         self.lbl_image.config(image=self.current_image)
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
@@ -89,6 +90,8 @@ class Game(tk.Frame):
 
     # Commande pour revenir au début pour recommencer après une défaite
     def restart_game(self):
+        self.health = 50
+        self.update()
         self.current_image = tk.PhotoImage(file="images/donjonstart.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(
@@ -99,14 +102,11 @@ class Game(tk.Frame):
 
     def make_choice_1(self, choice):
         if choice == 'gauche':
-            self.lbl_text.config(
-                text="Vous avez choisi le chemin de gauche.\nPerdu dans la pénombre, vous tombez dans un piège qui vous tue instanément sans savoir ce que c'était...\nDéfaite...")
-            self.current_image = tk.PhotoImage(file="images/defeat.png")
-            self.lbl_image.config(image=self.current_image)
-
-            #Bouton pour Rejouer du début ou pour quitter le jeu
-            self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-            self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
+            self.health -= 10
+            self.update_stats()
+            self.modify_frame("images/trap.png", "Vous avez choisi le chemin de gauche."
+                                                 "\nPerdu dans la pénombre, vous tombez dans un piège qui vous blesse sans savoir ce que c'était..."
+                                                 "\nVous perdez 10PV\nVous trouvez la sortie", "Continuer", "Continuer", self.first_fight, self.first_fight)
 
         elif choice == 'droite':
             self.current_image = tk.PhotoImage(file="images/weaponchoice.png")
@@ -117,6 +117,8 @@ class Game(tk.Frame):
             self.btn_2.config(text="Massue(+5ATT et +20PV)", command=lambda: self.make_weapon_choice('Massue'))
 
     def make_weapon_choice(self,choice):
+        self.health = 50
+        self.update()
         if choice == "Epée":
             self.weapon = "Epée"
             self.player_damage += 10
@@ -162,6 +164,7 @@ class Game(tk.Frame):
             self.health -= self.monster_damage + random.randint(0, 5)
             self.update_stats()
         if self.health <= 0:
+            self.lbl_text.config(text="Vous avez perdu !\n Défaite...")
             self.death_screen()
 
     def defend(self):
