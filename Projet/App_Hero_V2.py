@@ -145,20 +145,10 @@ class Game(tk.Frame):
         self.modify_frame("images/first encounter.png",
                           "Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?",
                           "Attaquer", "Fuir", self.fight_screen, self.road_choice)
-        # self.current_image = tk.PhotoImage(file="images/first encounter.png")
-        # self.lbl_image.config(image=self.current_image)
-        # self.lbl_text.config(text="Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?")
-        # self.btn_1.config(text="Attaquer", command=lambda: self.fight_screen())
-        # self.btn_2.config(text="Fuir", command=lambda: self.road_choice())
 
     def fight_screen(self):
-        self.modify_frame()
-        self.current_image = tk.PhotoImage(file="images/fight.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text=f"Vous avez choisi d'attaquer !\nLe combat commence !\n Infos de l'adversaire: {self.monster_health} PV\nQue faites-vous ?")
-        #Bouton durant le combat pour Attaquer ou Se Défendre
-        self.btn_1.config(text="Attaquer", command=lambda: self.attack())
-        self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
+        self.modify_frame("images/fight.png", f"Vous avez choisi d'attaquer !\nLe combat commence !\n Infos de l'adversaire: {self.monster_health} PV\nQue faites-vous ?",
+                          "Attaquer", "Se Défendre", self.attack, self.defend)
 
     def attack(self):
         self.monster_health -= self.player_damage
@@ -188,19 +178,13 @@ class Game(tk.Frame):
         self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}")
 
     def road_choice(self):
-        self.current_image = tk.PhotoImage(file="images/two_road.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Après cette confrontation, vous continuez votre chemin...\n vous remarquez deux chemins possibles:\nla première menant vers un donjon, la deuxième vers un chateau magnifique !\nQue faites-vous ?")
-        self.btn_1.config(text="Direction le chateau", command=lambda: self.castle_area())
-        self.btn_2.config(text="Partir vers une autre direction", command=lambda: self.cave_area())
+        self.modify_frame("images/two_road.png", "Après cette confrontation, vous continuez votre chemin...\n vous remarquez deux chemins possibles:"
+                                                                       "\nla première menant vers un donjon, la deuxième vers un chateau magnifique !"
+                                                                       "\nQue faites-vous ?", "Direction le chateau", "Partir vers une autre direction", self.castle_area_screen, self.cave_area)
 
-    def castle_area(self):
-        self.current_image = tk.PhotoImage(file="images/castle.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Vous arrivez près de l'entrée du du chateau du chateau mais un garde du chateau vous interpelle...\n 'Quel est votre nom avant d'entrer ?'")
-        self.btn_1.config(text="Continuer", command=lambda: self.name_entry())
-        self.btn_2.config(text="Continuer", command=lambda: self.name_entry())
-
+    def castle_area_screen(self):
+        self.modify_frame("images/castle.png", "Vous arrivez près de l'entrée du du chateau du chateau mais un garde du chateau vous interpelle..."
+                                               "\n 'Quel est votre nom avant d'entrer ?'", "Continuer", "Continuer", self.name_entry, self.name_entry)
     def name_entry(self):
         self.current_image = tk.PhotoImage(file="images/demandenom.png")
         self.lbl_image.config(image=self.current_image)
@@ -218,30 +202,25 @@ class Game(tk.Frame):
         self.name_choice.forget()
         self.health += 20
         self.update_stats()
-        self.current_image = tk.PhotoImage(file="images/village_entrance.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text= f"Bievenu(e) {self.player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?")
-        self.btn_1.config(text="Direction l'entrée du chateau", command=lambda: self.castle_fight_screen())
-        self.btn_2.config(text="Aller au bar", command=lambda: self.tavern_area())
+        self.modify_frame("images/village_entrance.png", f"Bievenu(e) {self.player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'"
+                                                         f"\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?", "Direction l'entrée du chateau", "Partir vers une autre direction",
+                          self.castle_fight_screen, self.cave_area)
 
     def castle_fight_screen(self):
-        self.current_image = tk.PhotoImage(file="images/castle_fight.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(
-            text="Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave...\n Si vous voulez sauver les personnes restantes il faudra se battre !\nQue faites-vous ?")
-        self.btn_1.config(text="SE BATTRE!", command=lambda: self.minotaur_fight_screen())
-        self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
+        self.modify_frame("images/castle_fight.png", "Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave..."
+                                                     "\n Si vous voulez sauver les personnes restantes il faudra se battre !"
+                                                     "\nQue faites-vous ?", "SE BATTRE!", "S'enfuir", self.minotaur_fight_screen, self.minotaur_end)
 
     def minotaur_fight_screen(self):
         self.monster = "minotaure"
         self.monster_health = 50
         self.monster_damage = 10
-        self.modify_frame()
+        self.update_stats()
         self.current_image = tk.PhotoImage(file="images/minotaur_fight.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="X")
+        self.lbl_text.config(text="Le combat commence !\nD'autres soldats du chateau vous viennent en aide !\nInfos de l'adversaire: 50 PV\nQue faites-vous ?",)
         self.btn_1.config(text="Attaquer", command=lambda: self.attack())
-        self.btn_2.config(text="Fuir", command=lambda: self.defend())
+        self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
 
     def minotaur_end(self):
         self.current_image = tk.PhotoImage(file="images/defeat.png")
