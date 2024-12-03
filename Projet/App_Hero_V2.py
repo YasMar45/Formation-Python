@@ -26,6 +26,9 @@ class Game(tk.Frame):
         #Arme
         self.weapon = ''
 
+        # Stat du monstre première rencontre
+        self.monster_health = 20
+        self.monster_damage = 5
 
         # Frame principale
         self.int = tk.Frame(self.parent, bg='black')
@@ -65,7 +68,7 @@ class Game(tk.Frame):
         #Affichage PV et ATT du joueur durant le jeu
         self.frm_box2 = tk.LabelFrame(self.int, text="Vos statistiques", bg="white", relief=tk.SUNKEN)
         self.frm_box2.place(relx=0, rely=0, relwidth=0.09, relheight=0.15)
-        self.lbl_text2 = tk.Label(self.frm_box2,text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",fg="black", bg="white", font=("arial", 10))
+        self.lbl_text2 = tk.Label(self.frm_box2,text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",fg="black", bg="white", font=("arial", 15, "bold"))
         self.lbl_text2.pack(expand=True, pady=20)
 
     # Ecran de défaite quand PV = 0
@@ -114,7 +117,7 @@ class Game(tk.Frame):
             self.player_damage += 10
             self.health += 10
             self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",
-                                  fg="black", bg="white", font=("arial", 10))
+                                  fg="black", bg="white", font=("arial", 15, "bold"))
             self.current_image = tk.PhotoImage(file="images/sword.png")
             self.lbl_image.config(image=self.current_image)
             self.lbl_text.config(text= "Vous avez choisi l'épée ! Bon choix\nVous gagnez +10PV et +10 ATT")
@@ -126,7 +129,7 @@ class Game(tk.Frame):
             self.player_damage += 5
             self.health += 20
             self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",
-                                  fg="black", bg="white", font=("arial", 10))
+                                  fg="black", bg="white", font=("arial", 15, "bold"))
             self.current_image = tk.PhotoImage(file="images/massue.png")
             self.lbl_image.config(image=self.current_image)
             self.lbl_text.config(text= "Vous avez choisi la massue ! Bon choix\nVous gagnez +20 PV et +5 ATT")
@@ -136,8 +139,6 @@ class Game(tk.Frame):
     def first_fight(self):
         self.current_image = tk.PhotoImage(file="images/first encounter.png")
         self.lbl_image.config(image=self.current_image)
-
-
 
 # Créer et exécuter l'application
 root = tk.Tk()
