@@ -222,6 +222,14 @@ class Game(tk.Frame):
         self.btn_1.config(text="Attaquer", command=lambda: self.attack())
         self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
 
+    def minotaur_win_screen(self):
+        self.modify_frame("images/minotaur_win.png", f"Vous prenez votre {self.weapon} et partez à l'assaut du Minotaure déjà un peu affaibli par le peu de soldats restants...\n"
+                                                     f"Après un combat long et dur, vous avec vaincu le Minotaure !", "Continuer", "Continuer", self.victory_castle_screen, self.victory_castle_screen)
+
+    def victory_castle_screen(self):
+        self.modify_frame("images/king_win.png", "Malheureusement, le Roi étant mort, le peuple est d'accord pour faire de vous le Roi de PythoVillage!!\nVous avez les épaules pour protéger cette cité!!"
+                                                 "\nFélicitations, vous avez réussi une fin!", "Rejouer pour avoir une autre fin", "Quittez le jeu", self.restart_game, self.quit)
+
     def minotaur_end_screen(self):
         self.modify_frame("images/defeat.png", "Vous décidez de vous enfuir en laissant les autres dans la mort mais..."
                                                "\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux..."
