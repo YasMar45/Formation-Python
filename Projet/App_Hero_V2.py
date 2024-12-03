@@ -151,7 +151,7 @@ class Game(tk.Frame):
     def fight_screen(self):
         self.current_image = tk.PhotoImage(file="images/fight.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Vous avez choisi d'attaquer !\nLe combat commence !\nQue faites-vous ?")
+        self.lbl_text.config(text=f"Vous avez choisi d'attaquer !\nLe combat commence !\n Infos de l'adversaire: {self.monster_health} PV\nQue faites-vous ?")
         #Bouton durant le combat pour Attaquer ou Se Défendre
         self.btn_1.config(text="Attaquer", command=lambda: self.attack())
         self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
@@ -225,6 +225,7 @@ class Game(tk.Frame):
 
     def castle_fight(self):
         pass
+
     def tavern_area(self):
         pass
 
