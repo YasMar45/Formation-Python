@@ -27,9 +27,13 @@ class Game(tk.Frame):
         #Arme
         self.weapon = ''
 
-        # Stat Monstre 1
+        # Stat Monstre
         self.monster_health = 20
-        self.monster_damage = 5
+        self.monster_damage = random.randint(5, 10)
+
+        # Stat Minotaure
+        self.minotaure_health = 50
+        self.minotaure_damage = random.randint(10, 15)
 
         # Frame principale
         self.int = tk.Frame(self.parent, bg='black')
@@ -179,18 +183,49 @@ class Game(tk.Frame):
         if self.health <= 0:
             self.restart_game()
 
-
     def update_stats(self):
         self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}")
 
     def road_choice(self):
         self.current_image = tk.PhotoImage(file="images/two_road.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="X")
+        self.lbl_text.config(text="Après cette confrontation, vous continuez votre chemin...\n vous remarquez deux chemins possibles:\nla première menant vers un donjon, la deuxième vers un chateau magnifique !\nQue faites-vous ?")
         self.btn_1.config(text="Direction le chateau", command=lambda: self.castle_area())
         self.btn_2.config(text="Aller au bar", command=lambda: self.cave_area())
 
     def castle_area(self):
+        self.current_image = tk.PhotoImage(file="images/castle.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous arrivez près de l'entrée du du chateau du chateau mais un garde du chateau vous interpelle...\n 'Quel est votre nom avant d'entrer ?'")
+        self.btn_1.config(text="Continuer", command=lambda: self.name_entry())
+        self.btn_2.config(text="Continuer", command=lambda: self.name_entry())
+
+    def name_entry(self):
+        self.current_image = tk.PhotoImage(file="images/demandenom.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Entrez votre nom ici !:")
+        self.name_choice = tk.Entry(self.frm_box, width=30)
+        self.name_choice.pack(pady=30)
+        self.btn_1.config(text="Continuer", command=lambda: self.name_select())
+        self.btn_2.config(text="Continuer", command=lambda: self.name_select())
+    def name_select(self):
+        global player_name
+        player_name = self.name_choice.get()
+        self.village_zone()
+
+    def village_zone(self):
+        global player_name
+        self.name_choice.forget()
+        self.current_image = tk.PhotoImage(file="images/village_entrance.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'\n Que faites-vous ?")
+        self.btn_1.config(text="Direction l'entrée du chateau", command=lambda: self.castle_fight())
+        self.btn_2.config(text="Aller au bar", command=lambda: self.tavern_area())
+
+    def castle_fight(self):
+        pass
+    def tavern_area(self):
         pass
 
     def cave_area(self):
