@@ -203,8 +203,8 @@ class Game(tk.Frame):
         self.health += 20
         self.update_stats()
         self.modify_frame("images/village_entrance.png", f"Bievenu(e) {self.player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'"
-                                                         f"\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?", "Direction l'entrée du chateau", "Partir vers une autre direction",
-                          self.castle_fight_screen, self.cave_area)
+                                                         f"\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?", "Direction l'entrée du chateau", "Direction Taverne de la ville",
+                          self.castle_fight_screen, self.tavern_area)
 
     def castle_fight_screen(self):
         self.modify_frame("images/castle_fight.png", "Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave..."
@@ -223,29 +223,20 @@ class Game(tk.Frame):
         self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
 
     def minotaur_end(self):
-        self.current_image = tk.PhotoImage(file="images/defeat.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Vous décidez de vous enfuir en laissant les autres dans la mort mais...\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux...\n Défaite...")
-        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
+        self.modify_frame("images/defeat.png", "Vous décidez de vous enfuir en laissant les autres dans la mort mais..."
+                                               "\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux..."
+                                               "\n Défaite...", "Rejouer", "Quitter le jeu", self.restart_game, self.quit)
 
     def tavern_area(self):
-        self.current_image = tk.PhotoImage(file="images/tavern.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Vous allez au bar boire un coup mais avec l'ambiance, cela va bien plus loin...")
-        self.btn_1.config(text="Continuer", command=lambda: self.drunk_lose())
-        self.btn_2.config(text="Continuer", command=lambda: self.drunk_lose())
-
+        self.modify_frame("images/tavern.png", "Vous allez à la taverne de PythonCity boire un coup mais avec l'ambiance, cela va bien plus loin...'",
+                          "Continuer", "Continuer", self.drunk_lose, self.drunk_lose)
     def drunk_lose(self):
         self.weapon = ''
         self.player_damage = 0
         self.health = 10
         self.update_stats()
-        self.current_image = tk.PhotoImage(file="images/defeat.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipement...\nTotalement dépuiller...\nDéfaite...")
-        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
-        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit())
+        self.modify_frame("images/defeat.png", "Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipements...\n"
+                                               "Totalement dépouiller...\nDéfaite...", "Rejouer", "Quitter le jeu", self.restart_game, self.quit)
 
     def cave_area(self):
         pass
