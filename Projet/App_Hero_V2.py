@@ -144,7 +144,7 @@ class Game(tk.Frame):
     def first_fight(self):
         self.modify_frame("images/first encounter.png",
                           "Vous rencontrez une silhouette hostile vers vous, un combat commence !\n Que faites-vous?",
-                          "Attaquer", "Fuir", self.fight_screen, self.road_choice)
+                          "Attaquer", "Fuir", self.fight_screen, self.road_choice_screen)
 
     def fight_screen(self):
         self.modify_frame("images/fight.png", f"Vous avez choisi d'attaquer !\nLe combat commence !\n Infos de l'adversaire: {self.monster_health} PV\nQue faites-vous ?",
@@ -156,8 +156,8 @@ class Game(tk.Frame):
         self.update_stats()
         if self.monster_health <= 0:
             self.lbl_text.config(text="Vous avez vaincu le monstre !")
-            self.btn_1.config(text="Continuer", command=lambda: self.road_choice())
-            self.btn_2.config(text="Continuer", command=lambda: self.road_choice())
+            self.btn_1.config(text="Continuer", command=lambda: self.road_choice_screen())
+            self.btn_2.config(text="Continuer", command=lambda: self.road_choice_screen())
         else:
             self.health -= self.monster_damage + random.randint(0, 5)
             self.update_stats()
@@ -177,10 +177,10 @@ class Game(tk.Frame):
     def update_stats(self):
         self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}")
 
-    def road_choice(self):
+    def road_choice_screen(self):
         self.modify_frame("images/two_road.png", "Après cette confrontation, vous continuez votre chemin...\n vous remarquez deux chemins possibles:"
                                                                        "\nla première menant vers un donjon, la deuxième vers un chateau magnifique !"
-                                                                       "\nQue faites-vous ?", "Direction le chateau", "Partir vers une autre direction", self.castle_area_screen, self.cave_area)
+                                                                       "\nQue faites-vous ?", "Direction le chateau", "Partir vers une autre direction", self.castle_area_screen, self.cave_area_screen)
 
     def castle_area_screen(self):
         self.modify_frame("images/castle.png", "Vous arrivez près de l'entrée du du chateau du chateau mais un garde du chateau vous interpelle..."
@@ -196,20 +196,20 @@ class Game(tk.Frame):
 
     def name_select(self):
         self.player_name = self.name_choice.get()
-        self.village_zone()
+        self.village_zone_screen()
 
-    def village_zone(self):
+    def village_zone_screen(self):
         self.name_choice.forget()
         self.health += 20
         self.update_stats()
         self.modify_frame("images/village_entrance.png", f"Bievenu(e) {self.player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'"
                                                          f"\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?", "Direction l'entrée du chateau", "Direction Taverne de la ville",
-                          self.castle_fight_screen, self.tavern_area)
+                          self.castle_fight_screen, self.tavern_area_screen)
 
     def castle_fight_screen(self):
         self.modify_frame("images/castle_fight.png", "Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave..."
                                                      "\n Si vous voulez sauver les personnes restantes il faudra se battre !"
-                                                     "\nQue faites-vous ?", "SE BATTRE!", "S'enfuir", self.minotaur_fight_screen, self.minotaur_end)
+                                                     "\nQue faites-vous ?", "SE BATTRE!", "S'enfuir", self.minotaur_fight_screen, self.minotaur_end_screen)
 
     def minotaur_fight_screen(self):
         self.monster = "minotaure"
@@ -222,15 +222,15 @@ class Game(tk.Frame):
         self.btn_1.config(text="Attaquer", command=lambda: self.attack())
         self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
 
-    def minotaur_end(self):
+    def minotaur_end_screen(self):
         self.modify_frame("images/defeat.png", "Vous décidez de vous enfuir en laissant les autres dans la mort mais..."
                                                "\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux..."
                                                "\n Défaite...", "Rejouer", "Quitter le jeu", self.restart_game, self.quit)
 
-    def tavern_area(self):
+    def tavern_area_screen(self):
         self.modify_frame("images/tavern.png", "Vous allez à la taverne de PythonCity boire un coup mais avec l'ambiance, cela va bien plus loin...'",
-                          "Continuer", "Continuer", self.drunk_lose, self.drunk_lose)
-    def drunk_lose(self):
+                          "Continuer", "Continuer", self.drunk_lose_screen, self.drunk_lose_screen)
+    def drunk_lose_screen(self):
         self.weapon = ''
         self.player_damage = 0
         self.health = 10
@@ -238,7 +238,36 @@ class Game(tk.Frame):
         self.modify_frame("images/defeat.png", "Après une bonne fête rempli d'alcool, vous vous réveillez au milieu du village sans vos équipements...\n"
                                                "Totalement dépouiller...\nDéfaite...", "Rejouer", "Quitter le jeu", self.restart_game, self.quit)
 
-    def cave_area(self):
+    def cave_area_screen(self):
+        self.modify_frame("images/cave_zone.png", "Vous ignorez le village et décidez de continuer votre route\nVous entendez de forts bruit venant du village mais cela ne doit pas être bien important..."
+                                                  "\n Vous entrez dans une grotte magnifique, peut-être un trésor vous y attends!!", "Continuer", "Continuer",
+                          self.thief_camp_screen, self.thief_camp_screen)
+
+    def thief_camp_screen(self):
+        self.modify_frame("images/thief_camp.png", "Vous vous aventurez dans cette grotte...\nVous remarquez un camp déjà mis en place"
+                                                   "\nQui sont les personnes dedans ?", "Continuer", "Continuer", self.thief_attack_screen, self.thief_attack_screen)
+
+    def thief_attack_screen(self):
+        self.modify_frame("images/thief_attack.png", "Vous essayer de ne pas faire de bruit pour ne pas éveillez les soupçons...\nEn ayant presque traversé le camps en toute discrétions, vous sentez quelques chose derrière vous..."
+                                                     "\nVous vous retournez et voyez un voleur vous bandir dessus"
+                                                     "\nQue faites-vous ?", "Contrer son coup", "Esquiver son coup", self.thief_fight, self.thief_fight)
+    def thief_fight(self):
+        self.monster = "thief"
+        self.monster_health = 30
+        self.monster_damage = 20
+        self.update_stats()
+        self.current_image = tk.PhotoImage(file="images/thief_attack.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Le combat commence !\nD'autres soldats du chateau vous viennent en aide !\nInfos de l'adversaire: 50 PV\nQue faites-vous ?", )
+        self.btn_1.config(text="Attaquer", command=lambda: self.attack())
+        self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
+
+    def thief_win_screen(self):
+        self.modify_frame("images/thief_win.png", f"Vous arrivez à abattre le voleur avec votre {self.weapon}!\n
+                          "Félicitation !", "Continuer", "Continuer", self.treasure_end_screen, self.treasure_end_screen)
+
+    def treasure_end_screen(self):
         pass
 
 # Créer et exécuter l'application
