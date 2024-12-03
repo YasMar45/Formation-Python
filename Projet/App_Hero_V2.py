@@ -199,7 +199,7 @@ class Game(tk.Frame):
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text="Après cette confrontation, vous continuez votre chemin...\n vous remarquez deux chemins possibles:\nla première menant vers un donjon, la deuxième vers un chateau magnifique !\nQue faites-vous ?")
         self.btn_1.config(text="Direction le chateau", command=lambda: self.castle_area())
-        self.btn_2.config(text="Aller au bar", command=lambda: self.cave_area())
+        self.btn_2.config(text="Partir vers une autre direction", command=lambda: self.cave_area())
 
     def castle_area(self):
         self.current_image = tk.PhotoImage(file="images/castle.png")
