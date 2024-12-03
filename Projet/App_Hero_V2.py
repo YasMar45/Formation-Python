@@ -253,7 +253,6 @@ class Game(tk.Frame):
         self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
         self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
 
-
     def tavern_area(self):
         pass
 
