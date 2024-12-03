@@ -152,6 +152,7 @@ class Game(tk.Frame):
         # self.btn_2.config(text="Fuir", command=lambda: self.road_choice())
 
     def fight_screen(self):
+        self.modify_frame()
         self.current_image = tk.PhotoImage(file="images/fight.png")
         self.lbl_image.config(image=self.current_image)
         self.lbl_text.config(text=f"Vous avez choisi d'attaquer !\nLe combat commence !\n Infos de l'adversaire: {self.monster_health} PV\nQue faites-vous ?")
