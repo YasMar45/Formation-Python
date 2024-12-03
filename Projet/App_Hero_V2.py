@@ -216,11 +216,8 @@ class Game(tk.Frame):
         self.monster_health = 50
         self.monster_damage = 10
         self.update_stats()
-        self.current_image = tk.PhotoImage(file="images/minotaur_fight.png")
-        self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text="Le combat commence !\nD'autres soldats du chateau vous viennent en aide !\nInfos de l'adversaire: 50 PV\nQue faites-vous ?",)
-        self.btn_1.config(text="Attaquer", command=lambda: self.attack())
-        self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
+        self.modify_frame("images/minotaur_fight.png", "Le combat commence !\nD'autres soldats du chateau vous viennent en aide !\nInfos de l'adversaire: 50 PV"
+                                                       "\nQue faites-vous ?", "Attaquer", "Se Défendre", self.attack, self.defend)
 
     def minotaur_win_screen(self):
         self.modify_frame("images/minotaur_win.png", f"Vous prenez votre {self.weapon} et partez à l'assaut du Minotaure déjà un peu affaibli par le peu de soldats restants...\n"
