@@ -264,11 +264,11 @@ class Game(tk.Frame):
         self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
 
     def thief_win_screen(self):
-        self.modify_frame("images/thief_win.png", f"Vous arrivez à abattre le voleur avec votre {self.weapon}!\n
-                          "Félicitation !", "Continuer", "Continuer", self.treasure_end_screen, self.treasure_end_screen)
+        self.modify_frame("images/thief_win.png", f"Vous arrivez à abattre le voleur avec votre {self.weapon}!\nFélicitation !", "Continuer", "Continuer", self.treasure_end_screen, self.treasure_end_screen)
 
     def treasure_end_screen(self):
-        pass
+        self.modify_frame("images/treasure.png", "Après votre confrontation, vous arrivez dans leur salle aux trésors !\nFélicitation ! La richesse vous attends!",
+                          "Rejouer pour avoir une autre fin", "Quitter le jeu", self.restart_game, self.quit)
 
 # Créer et exécuter l'application
 root = tk.Tk()
