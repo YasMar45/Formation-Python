@@ -136,7 +136,7 @@ class Game(tk.Frame):
         elif choice == "Massue":
             self.weapon = "Massue"
             self.player_damage += 5
-            self.health += 20
+            self.health += 30
             self.lbl_text2.config(text=f"{self.health} PV\n{self.player_damage} ATT\nArme:{self.weapon}",
                                   fg="black", bg="white", font=("arial", 15, "bold"))
             self.current_image = tk.PhotoImage(file="images/massue.png")
