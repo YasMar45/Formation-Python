@@ -93,6 +93,13 @@ class Game(tk.Frame):
         self.btn_1.config(text="Chemin de Gauche", command=lambda: self.make_choice_1('gauche'))
         self.btn_2.config(text="Chemin de Droite", command=lambda: self.make_choice_1('droite'))
 
+    def death_screen(self):
+        self.health = 50
+        self.current_image = tk.PhotoImage(file="images/defeat.png")
+        self.lbl_image.config(image=self.current_image)
+        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+
     # Commande pour quitter le jeu sur un bouton
     def quit_game(self):
         self.quit()
@@ -157,13 +164,14 @@ class Game(tk.Frame):
         self.btn_2.config(text="Se Défendre", command=lambda: self.defend())
 
     def attack(self):
-        # Joueur qui attaque le monstre
         self.monster_health -= self.player_damage
         self.lbl_text.config(text=f"Vous attaquez !\nVous infligez {self.player_damage} de dégats\nIl vous inflige en retour {self.monster_damage} points de dégats\nPV du monstre restant: {self.monster_health}")
         if self.monster_health <= 0:
             self.lbl_text.config(text="Vous avez vaincu le monstre !")
             self.btn_1.config(text="Continuer", command=lambda: self.road_choice())
             self.btn_2.config(text="Continuer", command=lambda: self.road_choice())
+        elif self.health <= 0:
+            self.death_screen()
         else:
             self.monster_attack()
 
@@ -171,7 +179,7 @@ class Game(tk.Frame):
         self.health -= self.monster_damage - 5
         self.update_stats()
         if self.health <= 0:
-            self.restart_game()
+            self.death_screen()
         else:
             self.lbl_text.config(text=f"Vous vous défendez! Réduisez les dégâts reçus.\nVos PV: {self.health}")
             self.btn_1.config(text="Attaquer", command=lambda: self.attack())
@@ -217,14 +225,34 @@ class Game(tk.Frame):
     def village_zone(self):
         global player_name
         self.name_choice.forget()
+        self.health += 20
+        self.update_stats()
         self.current_image = tk.PhotoImage(file="images/village_entrance.png")
         self.lbl_image.config(image=self.current_image)
-        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'\n Que faites-vous ?")
+        self.lbl_text.config(text= f"Bievenu(e) {player_name} !\n Soldat: 'Vous pouvez rentrer à PythonCity !'\nVous vous reposez et récupérez 20 PV\nQue faites-vous ?")
         self.btn_1.config(text="Direction l'entrée du chateau", command=lambda: self.castle_fight())
         self.btn_2.config(text="Aller au bar", command=lambda: self.tavern_area())
 
     def castle_fight(self):
-        pass
+        self.current_image = tk.PhotoImage(file="images/castle_fight.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(
+            text="Vers la salle du trône, un massacre...\n Un Minotaure de très grande taille est au milieu de la salle entouré de cadave...\n Si vous voulez sauver les personnes restantes il faudra se battre !\nQue faites-vous ?")
+        self.btn_1.config(text="SE BATTRE!", command=lambda: self.minotaur_fight())
+        self.btn_2.config(text="S'enfuir", command=lambda: self.minotaur_end())
+
+    def minotaur_fight(self):
+        self.current_image = tk.PhotoImage(file="images/minotaur_fight.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="X")
+
+    def minotaur_end(self):
+        self.current_image = tk.PhotoImage(file="images/defeat.png")
+        self.lbl_image.config(image=self.current_image)
+        self.lbl_text.config(text="Vous décidez de vous enfuir en laissant les autres dans la mort mais...\nLe Minotaure, vous voyant vous enfuir, lance sa Hache vers vous sans manquer et vous tue sur le coup en vous déchiquetant en deux...\n Défaite...")
+        self.btn_1.config(text="Rejouer", command=lambda: self.restart_game())
+        self.btn_2.config(text="Quitter le jeu", command=lambda: self.quit_game())
+
 
     def tavern_area(self):
         pass
