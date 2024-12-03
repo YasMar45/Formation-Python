@@ -57,7 +57,7 @@ class Game(tk.Frame):
         self.lbl_text = tk.Label(self.frm_box,
                                  text=f"Bienvenue dans le monde de PythoLand Quest!\n"
                                       f"Vous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\n"
-                                      f"Votre quête commence ici avec comme base {self.health} PV dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
+                                      f"Votre quête commence ici avec comme base {self.health} PV sans arme dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
                                  fg="black", bg="white", font=("arial", 20))
         self.lbl_text.pack(expand=True, pady=20)
 
