@@ -1,6 +1,4 @@
 import tkinter as tk
-import random
-
 
 # Taille de la fenêtre
 largeur_fenetre = 1920
@@ -281,4 +279,3 @@ class Game(tk.Frame):
 root = tk.Tk()
 game = Game(root)
 root.mainloop()
-
