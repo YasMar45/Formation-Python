@@ -2,15 +2,6 @@ import tkinter as tk
 import random
 
 
-def show_explication(self):
-    self.ecran_explication = tk.Toplevel(self.parent)
-    self.explication = ButJeu(self.ecran_explication)
-
-
-def game_frame(self):
-    self.ecran_jeu = tk.Toplevel(self.parent)
-    self.jeu = Game(self.ecran_jeu)
-
 class Menu(tk.Frame):
     def __init__(self, parent):
         super().__init__(parent)
@@ -142,7 +133,7 @@ class Game(tk.Frame):
 
         # Texte dans la boîte de message
         self.lbl_text = tk.Label(self.frm_box,
-                                 text=f"Bienvenue dans le monde de PythoLand Quest!\n"
+                                 text=f"Bienvenu(e) dans le monde de PythoLand Quest!\n"
                                       f"Vous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!\n"
                                       f"Votre quête commence ici avec comme base {self.health} PV sans arme dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies.",
                                  fg="black", bg="white", font=("arial", 20))
@@ -352,7 +343,7 @@ class Game(tk.Frame):
 
     def thief_attack_screen(self):
         self.modify_screen("images/thief_attack.png", "Vous essayer de ne pas faire de bruit pour ne pas éveillez les soupçons...\nEn ayant presque traversé le camps en toute discrétions, vous sentez quelques chose derrière vous..."
-                                                     "\nVous vous retournez et voyez un voleur vous bandit dessus"
+                                                     "\nVous vous retournez et voyez un voleur vous bandir dessus"
                                                      "\nQue faites-vous ?", "Contrer son coup", "Esquiver son coup", self.thief_fight, self.thief_fight)
     def thief_fight(self):
         self.monster = "thief"
