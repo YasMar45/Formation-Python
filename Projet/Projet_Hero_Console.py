@@ -55,7 +55,7 @@ def help_menu():
     slow_print('Le but du jeu est de vous en sortir de vivant de votre péripétie dans PythonLand Quest selon vox choix !')
     slow_print("Quand un choix vous sera demandé, vous devez entrer le numéro correspondant pour continuer et aussi appuyé sur Enter pour continuer l'intrigue")
     slow_print(f'Vous commencez la partie avec comme base de {player_health} PV,si cela tombe à 0, vous avez perdu...')
-    slow_print(f"Mais Attention ! Certains de vos choix vous seront bénéfiques comme un gain de points de vie tandis que d'autres vous nuieront comme une perte de vos points de vie ou la défaite directement! ")
+    slow_print(f"Mais Attention ! Certains de vos choix vous seront bénéfiques comme un gain de points de vie tandis que d'autres vous nuiront comme une perte de vos points de vie ou la défaite directement! ")
     game_menu()
 
 #Introduction + Nom
@@ -65,7 +65,7 @@ def start_game():
     slow_print('Vous êtes un aventurier se réveillant dans une sorte de cellule sans savoir comment ni pourquoi?!')
     slow_print('Votre quête commence ici dans cette cellule qui envoie vers un donjon très sombre illuminé par quelques bougies')
     slow_print('Faites attention ! Il faudra vous remplir de courage et y aller pour vous en sortir vivant,cela ne va pas être facile!')
-    slow_print('Vos choix vous meneront vers la victoire mais aussi très souvent vers la défaite, Bonne chance...')
+    slow_print('Vos choix vous mèneront vers la victoire mais aussi très souvent vers la défaite, Bonne chance...')
     slow_print('Mais avant tout quel est ton nom qui va "peut-être rentrer dans la légende...')
     player_name = input('Entrez votre nom:')
     slow_print(f'Très bien {player_name}, votre aventure commence dès maintenant,bonne chance...')
@@ -77,14 +77,14 @@ def dungeon_start():
     global player_weapon
     global player_health
     player_health = 50
-    slow_print(f'{player_name}, Vous vous revéillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire....')
+    slow_print(f'{player_name}, Vous vous réveillez dans cette cellule humide et immonde, juste quelques bougies vous éclaire....')
     slow_print(f'Vous avez un mal de crâne comme si on vous avez frappé auparavant très fort dessus')
     slow_print(f'Vous commencez avec {player_health} PV!')
     input(f"Appuyez sur Enter pour continuer")
     slow_print(f'Vous vous levez et apercevez le couloir qui découle de votre cellule....')
     slow_print(f'Vous voyez plein de cadavres au sol, il y a eu un combat très violent ici il y a peu de temps...')
     input(f"Appuyer sur Enter pour continuer")
-    slow_print(f"Au sol. 3 armes sont devant vous mais une seule pourra être portée,laquelle choissisez vous ?")
+    slow_print(f"Au sol. 3 armes sont devant vous mais une seule pourra être portée,laquelle choisissez vous ?")
     print(f"1.L'épee et Bouclier\n2.Les doubles Dagues'\n3.La Massue")
     weapon_choice = input(f"Veuillez choisir le chiffre pour votre arme de prédilection:")
     if weapon_choice == "1":
@@ -109,7 +109,7 @@ def first_encounter():
     global player_health
     input(f"Appuyer sur Enter pour continuer")
     slow_print(f'Après avoir ramassé {player_weapon}, vous vous aventuré dans le donjon en ayant pour but de chercher une sortie en premier temps...')
-    input(f"Appuyer sur Enter pour continer")
+    input(f"Appuyer sur Enter pour continuer")
     slow_print(f"Vous remarquez une faisceau lumineux au loin, on dirait bien que c'est la sortie!")
     slow_print(f"Mais... On dirait qu'une silhouette de dos garde cette sortie... Vous pouvez aussi apercevoir une crevasse sur le coté mais où cela va vous amenez ?")
     input(f"Appuyer sur Enter pour continuer")
@@ -117,14 +117,14 @@ def first_encounter():
     choice = input(f"1.Attaquez la silhouette par surprise tant qu'elle est dos à vous !!\n2.Vous faufilez dans dans la crevasse pour éviter le combat\nVotre choix:")
     if choice == '1':
         slow_print(f"À l'approche de la silhouette avec {player_weapon}, vous être prêt à lui asséner un coup mortel par surprise !")
-        if player_weapon == "L'épee et Bouclier":
+        if player_weapon == "L'épée et Bouclier":
             player_health -= 10
             slow_print(f"Vous prenez fermement votre épée pour lui trancher la gorge par derrière! Mais il a le temps de se retourner pour vous asséner un grand coup de poing dans votre bouclier qui a été levé juste avant ! Il succombe peu de temps après fait son coup de poing")
             input(f"Appuyer sur Enter pour continuer")
             slow_print(f"Vous avez été projeté avec la force brute de l'adversaire vers le mur,vous perdez 10 PV")
             check_health()
             slow_print(f"il vous reste {player_health} PV")
-            slow_print(f"Après vous êtes remis de cette confrontation, il est tant de sortir de ce donjon, l'extèrieur vous attend!")
+            slow_print(f"Après vous êtes remis de cette confrontation, il est tant de sortir de ce donjon, l'extérieur vous attend!")
             out_dungeon()
         elif player_weapon == 'Les doubles Dagues':
             player_health -= 30
@@ -134,12 +134,12 @@ def first_encounter():
             check_health()
             slow_print(f"il vous reste {player_health} PV, heureusement qu'il était affaibli grâce aux différent coup que vous lui avez asséné...")
             input(f"Appuyer sur Enter pour continuer")
-            slow_print(f"Après vous êtes remis de cette confrontation, il est tant de sortir de ce donjon, l'extèrieur vous attend!")
+            slow_print(f"Après vous êtes remis de cette confrontation, il est tant de sortir de ce donjon, l'extérieur vous attend!")
             out_dungeon()
         elif player_weapon == "La Massue":
             slow_print(f"Avec votre Massue chargée et prêt à lui mettre un coup mortel ! Il n'a pas eu le temps de réagir que vous avec pu l'écraser au sol sans broncher !")
             input(f"Appuyer sur Enter pour continuer")
-            slow_print(f"Après vous êtes remis de cette confrontation, il est tant de sortir de ce donjon, l'extèrieur vous attend!")
+            slow_print(f"Après vous êtes remis de cette confrontation, il est tant de sortir de ce donjon, l'extérieur vous attend!")
             out_dungeon()
         else:
             slow_print(f"Entrée incorrecte ou invalide. Veuillez Réessayer!")
@@ -244,7 +244,7 @@ def undead_attack():
     elif choice == '2':
         player_health -= 100
         slow_print(f"Vous décidez de ne pas aider le village et de vous enfuir mais en courant de toute vos forces...")
-        slow_print(f"Une horde de mort-vivant vous attrape et vous déchique sur place... Peut-être qu'avec l'aide du village, ça aurait pu mieux se passer...")
+        slow_print(f"Une horde de mort-vivant vous attrape et vous déchiquette sur place... Peut-être qu'avec l'aide du village, ça aurait pu mieux se passer...")
         check_health()
     else:
         slow_print(f"Entrée incorrecte ou invalide. Veuillez Réessayer!")
@@ -295,10 +295,10 @@ def right_path():
 def thief_coming():
     global player_health
     slow_print(f"Votre instinct vous réveille, vous entendez des pas vers l'extérieur qui se rapproche...")
-    input(f"Appuyer sur Enter pour continer")
+    input(f"Appuyer sur Enter pour continuer")
     slow_print(f"Vous apercevez que ce sont des bandis qui rôdent à la recherche de trésor ou de personne à piller")
     slow_print(f"Ils sont une dizaine,ça sera difficile de les battre à vous tout seul...\nQu'allez vous faire ?")
-    input(f"Appuyer sur Enter pour continer")
+    input(f"Appuyer sur Enter pour continuer")
     choice = input("1.Se cacher et rester silencieux\n2.Les attaquer!\nEntrer votre choix ici:")
     if choice == "1":
         slow_print(f"Vous restez silencieux caché sous le lit de la cabane...")
@@ -327,7 +327,7 @@ def thief_base():
     slow_print(f"Vous remarquez qu'il se prépare pour entrer dans une grotte où le camp est basé")
     input(f"Vous attendez un bon moment et une dizaine de bandits rentre dans cette grotte!")
     input(f"Appuyer sur Enter pour continuer")
-    slow_print(f"C'est le moment d'attaquer stratègiquement leur camp vu que leur nombre a été réduit!")
+    slow_print(f"C'est le moment d'attaquer stratégiquement leur camp vu que leur nombre a été réduit!")
     input(f"Appuyer sur Enter pour continuer")
     slow_print(f"Que faites-vous ?\n1.Profiter de l'opportunité et attaquer le camp des bandits!\n2.Ne rien tenter et vous enfuir sur le sentier le plus proche!")
     choice = input(f"Entrez votre choix ici:")
