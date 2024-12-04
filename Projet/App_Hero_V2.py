@@ -265,7 +265,7 @@ class Game(tk.Frame):
 
     def thief_attack_screen(self):
         self.modify_screen("images/thief_attack.png", "Vous essayer de ne pas faire de bruit pour ne pas éveillez les soupçons...\nEn ayant presque traversé le camps en toute discrétions, vous sentez quelques chose derrière vous..."
-                                                     "\nVous vous retournez et voyez un voleur vous bandir dessus"
+                                                     "\nVous vous retournez et voyez un voleur vous bandit dessus"
                                                      "\nQue faites-vous ?", "Contrer son coup", "Esquiver son coup", self.thief_fight, self.thief_fight)
     def thief_fight(self):
         self.monster = "thief"
